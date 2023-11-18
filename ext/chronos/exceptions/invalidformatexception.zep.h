@@ -1,0 +1,5 @@
+
+extern zend_class_entry *chronos_exceptions_invalidformatexception_ce;
+
+ZEPHIR_INIT_CLASS(Chronos_Exceptions_InvalidFormatException);
+

@@ -1,0 +1,21 @@
+{
+    "name": "chronos/chronos-ext",
+    "type": "library",
+    "description": "A PHP extension for the Chronos library",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.24"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Chronos\\": "ide-stubs/src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
