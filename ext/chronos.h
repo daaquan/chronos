@@ -4,6 +4,7 @@
 #ifndef ZEPHIR_CLASS_ENTRIES_H
 #define ZEPHIR_CLASS_ENTRIES_H
 
+#include "chronos/chronosinterface.zep.h"
 #include "chronos/chronos.zep.h"
 #include "chronos/exceptions/invalidformatexception.zep.h"
 

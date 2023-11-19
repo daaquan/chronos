@@ -10,7 +10,7 @@ if (PHP_CHRONOS != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/chronos", "chronos.zep.c", "chronos");
+  ADD_SOURCES(configure_module_dirname + "/chronos", "chronosinterface.zep.c chronos.zep.c", "chronos");
 	ADD_SOURCES(configure_module_dirname + "/chronos/exceptions", "invalidformatexception.zep.c", "chronos");
   ADD_FLAG("CFLAGS_CHRONOS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");

@@ -2,25 +2,12 @@
 
 namespace Chronos;
 
-use DateTime;
+use Chronos\Chronos\ChronosInterface;
 
-/**
- * Carbon like DateTime class for PHP 8.0+
- */
-class Chronos extends \DateTime
+class Chronos extends \DateTime implements ChronosInterface
 {
-    const MYSQL_DATE_FORMAT = 'Y-m-d';
-
-    const MYSQL_TIME_FORMAT = 'H:i:s';
-
-    const MYSQL_DATETIME_FORMAT = 'Y-m-d H:i:s';
-
-    const MYSQL_DATETIME_MILLISEC_FORMAT = 'Y-m-d H:i:s.v';
-
-    const MYSQL_DATETIME_MICROSEC_FORMAT = 'Y-m-d H:i:s.u';
-
     /**
-     * @param  mixed  $timezone
+     * @param \DateTimeZone|string|null $timezone
      */
     public function __construct(string $datetime = 'now', $timezone = null)
     {
@@ -30,7 +17,7 @@ class Chronos extends \DateTime
      * @param  mixed  $timezone
      * @return $this
      */
-    public function setTimeZone($timezone)
+    public function setTimeZone($timezone): static
     {
     }
 
@@ -38,34 +25,34 @@ class Chronos extends \DateTime
      * @param  mixed  $time
      * @param  mixed  $timezone
      */
-    public static function parse($time = 'now', $timezone = null)
+    public static function parse($time = 'now', $timezone = null): static
     {
     }
 
     /**
      * @param  mixed  $timezone
      */
-    public static function now($timezone = null)
+    public static function now($timezone = null): static
     {
     }
 
     /**
      * @return $this
      */
-    public function copy()
+    public function copy(): static
     {
     }
 
     /**
-     * @param  mixed  $format
-     * @param  mixed  $locale
+     * @param string $format
+     * @param string|null $locale
      */
-    public function format($format, $locale = null): string
+    public function format(string $format, string $locale = null): string
     {
     }
 
     /**
-     * @param  mixed  $locale
+     * @param mixed $locale
      */
     public function locale($locale)
     {
@@ -202,158 +189,151 @@ class Chronos extends \DateTime
     /**
      * @return false|\DateTime
      */
-    public function modify(string $modifier): DateTime
+    public function modify(string $modifier)
     {
     }
 
-    public function isToday()
+    public function isToday(): bool
     {
     }
 
-    public function isTomorrow()
+    public function isTomorrow(): bool
     {
     }
 
-    public function isYesterday()
+    public function isYesterday(): bool
     {
     }
 
-    public function isThisWeek()
+    public function isThisWeek(): bool
     {
     }
 
-    public function isNextWeek()
+    public function isNextWeek(): bool
     {
     }
 
-    public function isLastWeek()
+    public function isLastWeek(): bool
     {
     }
 
-    public function isThisMonth()
+    public function isThisMonth(): bool
     {
     }
 
-    public function isNextMonth()
+    public function isNextMonth(): bool
     {
     }
 
-    public function isLastMonth()
+    public function isLastMonth(): bool
     {
     }
 
-    public function isThisYear()
+    public function isThisYear(): bool
     {
     }
 
-    public function isNextYear()
+    public function isNextYear(): bool
     {
     }
 
-    public function isLastYear()
+    public function isLastYear(): bool
     {
     }
 
-    public function isFuture()
+    public function isFuture(): bool
     {
     }
 
-    public function isPast()
+    public function isPast(): bool
     {
     }
 
-    public function isLeapYear()
+    public function isLeapYear(): bool
     {
     }
 
-    public function isLongYear()
+    public function isLongYear(): bool
     {
     }
 
-    public function isWeekday()
+    public function isWeekday(): bool
     {
     }
 
-    public function isWeekend()
+    public function isWeekend(): bool
     {
     }
 
-    public function isMonday()
+    public function isMonday(): bool
     {
     }
 
-    public function isTuesday()
+    public function isTuesday(): bool
     {
     }
 
-    public function isWednesday()
+    public function isWednesday(): bool
     {
     }
 
-    public function isThursday()
+    public function isThursday(): bool
     {
     }
 
-    public function isFriday()
+    public function isFriday(): bool
     {
     }
 
-    public function isSaturday()
+    public function isSaturday(): bool
     {
     }
 
-    public function isSunday()
+    public function isSunday(): bool
     {
     }
 
-    public function isMorning()
+    public function isMorning(): bool
     {
     }
 
-    public function isAfternoon()
+    public function isAfternoon(): bool
     {
     }
 
-    public function isEvening()
+    public function isEvening(): bool
     {
     }
 
-    public function isNight()
+    public function isNight(): bool
     {
     }
 
-    public function isMidnight()
+    public function isMidnight(): bool
     {
     }
 
-    public function isNoon()
+    public function isNoon(): bool
     {
     }
 
-    public function isDaylightSavingTime()
+    public function isDaylightSavingTime(): bool
     {
     }
 
-    public function isStandardTime()
+    public function isStandardTime(): bool
     {
     }
 
-    public function isLastDayOfMonth()
+    public function isLastDayOfMonth(): bool
     {
     }
 
-    public function isLastWeekOfMonth()
+    public function isLastWeekOfMonth(): bool
     {
     }
 
-    public function isLastWeekOfYear()
-    {
-    }
-
-    /**
-     * @return $this
-     */
-    public function getDateTime()
+    public function isLastWeekOfYear(): bool
     {
     }
 
@@ -365,7 +345,7 @@ class Chronos extends \DateTime
     {
     }
 
-    public function getDay()
+    public function getDay(): int
     {
     }
 
@@ -505,214 +485,149 @@ class Chronos extends \DateTime
     {
     }
 
-    public function setDateTime(DateTime $dateTime): DateTime
+    public function setDateTime(\DateTime $dateTime)
     {
     }
 
     /**
-     * @param  mixed  $year
+     * @param mixed $year
      */
-    public function setYear($year)
+    public function setYear(int $year)
     {
     }
 
     /**
-     * @param  mixed  $month
+     * @param int $month
      */
-    public function setMonth($month)
+    public function setMonth(int $month)
+    {
+    }
+
+    public function setDay(int $day)
     {
     }
 
     /**
-     * @param  mixed  $day
+     * @param int $hour
      */
-    public function setDay($day)
+    public function setHour(int $hour)
+    {
+    }
+
+    public function setMinute(int $minute)
+    {
+    }
+
+    public function setSecond(int $second)
+    {
+    }
+
+    public function setMicrosecond(int $microsecond)
+    {
+    }
+
+    public function setDayOfWeek(int $dayOfWeek)
+    {
+    }
+
+    public function setDayOfYear(int $dayOfYear)
+    {
+    }
+
+    public function setWeekOfYear(int $weekOfYear)
+    {
+    }
+
+    public function setWeekOfMonth(int $weekOfMonth)
     {
     }
 
     /**
-     * @param  mixed  $hour
+     * @param int $monthOfYear
      */
-    public function setHour($hour)
+    public function setMonthOfYear(int $monthOfYear)
     {
     }
 
     /**
-     * @param  mixed  $minute
+     * @param mixed $years
      */
-    public function setMinute($minute)
+    public function addYears(int $years)
     {
     }
 
     /**
-     * @param  mixed  $second
+     * @param int $months
      */
-    public function setSecond($second)
+    public function addMonths(int $months)
+    {
+    }
+
+    public function addDays(int $days)
     {
     }
 
     /**
-     * @param  mixed  $microsecond
+     * @param int $hours
      */
-    public function setMicrosecond($microsecond)
+    public function addHours(int $hours)
+    {
+    }
+
+    public function addMinutes(int $minutes)
+    {
+    }
+
+    public function addSeconds(int $seconds)
+    {
+    }
+
+    public function addMicroseconds(int $microseconds)
+    {
+    }
+
+    public function addWeeks(int $weeks)
     {
     }
 
     /**
-     * @param  mixed  $dayOfWeek
+     * @param mixed $years
      */
-    public function setDayOfWeek($dayOfWeek)
+    public function subYears(int $years)
     {
     }
 
     /**
-     * @param  mixed  $dayOfYear
+     * @param int $months
      */
-    public function setDayOfYear($dayOfYear)
+    public function subMonths(int $months)
+    {
+    }
+
+    public function subDays(int $days)
     {
     }
 
     /**
-     * @param  mixed  $weekOfYear
-     */
-    public function setWeekOfYear($weekOfYear)
-    {
-    }
-
-    /**
-     * @param  mixed  $weekOfMonth
-     */
-    public function setWeekOfMonth($weekOfMonth)
-    {
-    }
-
-    /**
-     * @param  mixed  $monthOfYear
-     */
-    public function setMonthOfYear($monthOfYear)
-    {
-    }
-
-    /**
-     * @param  mixed  $millennium
-     */
-    public function setMillennium($millennium)
-    {
-    }
-
-    /**
-     * @param  mixed  $years
-     */
-    public function addYears($years)
-    {
-    }
-
-    /**
-     * @param  mixed  $months
-     */
-    public function addMonths($months)
-    {
-    }
-
-    /**
-     * @param  mixed  $days
-     */
-    public function addDays($days)
-    {
-    }
-
-    /**
-     * @param  mixed  $hours
-     */
-    public function addHours($hours)
-    {
-    }
-
-    /**
-     * @param  mixed  $minutes
-     */
-    public function addMinutes($minutes)
-    {
-    }
-
-    /**
-     * @param  mixed  $seconds
-     */
-    public function addSeconds($seconds)
-    {
-    }
-
-    /**
-     * @param  mixed  $microseconds
-     */
-    public function addMicroseconds($microseconds)
-    {
-    }
-
-    /**
-     * @param  mixed  $weeks
-     */
-    public function addWeeks($weeks)
-    {
-    }
-
-    /**
-     * @param  mixed  $years
-     */
-    public function subYears($years)
-    {
-    }
-
-    /**
-     * @param  mixed  $months
-     */
-    public function subMonths($months)
-    {
-    }
-
-    /**
-     * @param  mixed  $days
-     */
-    public function subDays($days)
-    {
-    }
-
-    /**
-     * @param  mixed  $hours
+     * @param int $hours
      */
     public function subHours($hours)
     {
     }
 
-    /**
-     * @param  mixed  $minutes
-     */
-    public function subMinutes($minutes)
+    public function subMinutes(int $minutes)
     {
     }
 
-    /**
-     * @param  mixed  $seconds
-     */
-    public function subSeconds($seconds)
+    public function subSeconds(int $seconds)
     {
     }
 
-    /**
-     * @param  mixed  $microseconds
-     */
-    public function subMicroseconds($microseconds)
+    public function subMicroseconds(int $microseconds)
     {
     }
 
-    /**
-     * @param  mixed  $weeks
-     */
-    public function subWeeks($weeks)
-    {
-    }
-
-    public function diff(\DateTimeInterface $targetObject, bool $absolute = false): \DateInterval
+    public function subWeeks(int $weeks)
     {
     }
 
@@ -720,63 +635,56 @@ class Chronos extends \DateTime
      * @param  \DateTimeInterface  $other
      * @param  bool  $abs
      */
-    public function diffInSeconds($other, $abs = true)
+    public function diffInSeconds($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInMinutes($other, $abs = true)
+    public function diffInMinutes($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInHours($other, $abs = true)
+    public function diffInHours($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInMonths($other, $abs = true)
+    public function diffInMonths($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInYears($other, $abs = true)
+    public function diffInYears($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInWeeks($other, $abs = true)
+    public function diffInWeeks($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInDays($other, $abs = true)
+    public function diffInDays($other, bool $abs = true)
     {
     }
 
     /**
-     * @param  \DateTimeInterface  $other
-     * @param  bool  $abs
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
      */
-    public function diffInMicroseconds($other, $abs = true)
+    public function diffInMicroseconds($other, bool $abs = true)
     {
     }
 
@@ -785,49 +693,49 @@ class Chronos extends \DateTime
      * @param  mixed  $end
      * @param  mixed  $equal
      */
-    public function between($start, $end, $equal = true)
+    public function between($start, $end, bool $equal = true): bool
     {
     }
 
     /**
      * @param  mixed  $dateTime
      */
-    public function eq($dateTime)
+    public function eq($dateTime): bool
     {
     }
 
     /**
      * @param  mixed  $dateTime
      */
-    public function ne($dateTime)
+    public function ne($dateTime): bool
     {
     }
 
     /**
-     * @param  mixed  $dateTime
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
      */
-    public function gt($dateTime)
+    public function gt($dateTime): bool
     {
     }
 
     /**
-     * @param  mixed  $dateTime
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
      */
-    public function gte($dateTime)
+    public function gte($dateTime): bool
     {
     }
 
     /**
-     * @param  mixed  $dateTime
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
      */
-    public function lt($dateTime)
+    public function lt($dateTime): bool
     {
     }
 
     /**
-     * @param  mixed  $dateTime
+     * @param \DateTime|string $dateTime
      */
-    public function lte($dateTime)
+    public function lte($dateTime): bool
     {
     }
 

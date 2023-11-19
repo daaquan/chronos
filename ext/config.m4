@@ -9,7 +9,8 @@ if test "$PHP_CHRONOS" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_CHRONOS, 1, [Whether you have Chronos])
-	chronos_sources="chronos.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c chronos/chronos.zep.c
+	chronos_sources="chronos.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c chronos/chronosinterface.zep.c
+	chronos/chronos.zep.c
 	chronos/exceptions/invalidformatexception.zep.c "
 	PHP_NEW_EXTENSION(chronos, $chronos_sources, $ext_shared,, )
 	PHP_ADD_BUILD_DIR([$ext_builddir/kernel/])

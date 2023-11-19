@@ -91,7 +91,6 @@ PHP_METHOD(Chronos_Chronos, getDayOfYear);
 PHP_METHOD(Chronos_Chronos, getWeekOfYear);
 PHP_METHOD(Chronos_Chronos, getWeekOfMonth);
 PHP_METHOD(Chronos_Chronos, getMonthOfYear);
-PHP_METHOD(Chronos_Chronos, getTimestamp);
 PHP_METHOD(Chronos_Chronos, getAge);
 PHP_METHOD(Chronos_Chronos, getDaysInMonth);
 PHP_METHOD(Chronos_Chronos, getDaysInYear);
@@ -129,7 +128,6 @@ PHP_METHOD(Chronos_Chronos, setDayOfYear);
 PHP_METHOD(Chronos_Chronos, setWeekOfYear);
 PHP_METHOD(Chronos_Chronos, setWeekOfMonth);
 PHP_METHOD(Chronos_Chronos, setMonthOfYear);
-PHP_METHOD(Chronos_Chronos, setMillennium);
 PHP_METHOD(Chronos_Chronos, addYears);
 PHP_METHOD(Chronos_Chronos, addMonths);
 PHP_METHOD(Chronos_Chronos, addDays);
@@ -186,8 +184,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_copy, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_format, 0, 1, IS_STRING, 0)
-	ZEND_ARG_INFO(0, format)
-	ZEND_ARG_INFO(0, locale)
+	ZEND_ARG_TYPE_INFO(0, format, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, locale, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_locale, 0, 0, 1)
@@ -294,112 +292,112 @@ ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronos_modify, 0, 1, Dat
 	ZEND_ARG_TYPE_INFO(0, modifier, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_istoday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_istoday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_istomorrow, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_istomorrow, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isyesterday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isyesterday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isthisweek, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isthisweek, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isnextweek, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isnextweek, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastweek, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastweek, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isthismonth, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isthismonth, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isnextmonth, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isnextmonth, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastmonth, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastmonth, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isthisyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isthisyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isnextyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isnextyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isfuture, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isfuture, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_ispast, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_ispast, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isleapyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isleapyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islongyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islongyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isweekday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isweekday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isweekend, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isweekend, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_ismonday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_ismonday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_istuesday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_istuesday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_iswednesday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_iswednesday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isthursday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isthursday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isfriday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isfriday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_issaturday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issaturday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_issunday, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issunday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_ismorning, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_ismorning, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isafternoon, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isafternoon, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isevening, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isevening, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isnight, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isnight, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_ismidnight, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_ismidnight, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isnoon, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isnoon, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isdaylightsavingtime, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isdaylightsavingtime, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_isstandardtime, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_isstandardtime, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastdayofmonth, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastdayofmonth, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastweekofmonth, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastweekofmonth, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_islastweekofyear, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_islastweekofyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getyear, 0, 0, IS_LONG, 0)
@@ -408,7 +406,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getmonth, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getday, 0, 0, IS_STRING, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getday, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gethour, 0, 0, IS_LONG, 0)
@@ -436,9 +434,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getweekofmonth, 
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getmonthofyear, 0, 0, IS_LONG, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gettimestamp, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getage, 0, 0, IS_LONG, 0)
@@ -518,119 +513,115 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setdatetime, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setyear, 0, 0, 1)
-	ZEND_ARG_INFO(0, year)
+	ZEND_ARG_TYPE_INFO(0, year, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setmonth, 0, 0, 1)
-	ZEND_ARG_INFO(0, month)
+	ZEND_ARG_TYPE_INFO(0, month, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setday, 0, 0, 1)
-	ZEND_ARG_INFO(0, day)
+	ZEND_ARG_TYPE_INFO(0, day, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_sethour, 0, 0, 1)
-	ZEND_ARG_INFO(0, hour)
+	ZEND_ARG_TYPE_INFO(0, hour, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setminute, 0, 0, 1)
-	ZEND_ARG_INFO(0, minute)
+	ZEND_ARG_TYPE_INFO(0, minute, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setsecond, 0, 0, 1)
-	ZEND_ARG_INFO(0, second)
+	ZEND_ARG_TYPE_INFO(0, second, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setmicrosecond, 0, 0, 1)
-	ZEND_ARG_INFO(0, microsecond)
+	ZEND_ARG_TYPE_INFO(0, microsecond, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setdayofweek, 0, 0, 1)
-	ZEND_ARG_INFO(0, dayOfWeek)
+	ZEND_ARG_TYPE_INFO(0, dayOfWeek, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setdayofyear, 0, 0, 1)
-	ZEND_ARG_INFO(0, dayOfYear)
+	ZEND_ARG_TYPE_INFO(0, dayOfYear, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setweekofyear, 0, 0, 1)
-	ZEND_ARG_INFO(0, weekOfYear)
+	ZEND_ARG_TYPE_INFO(0, weekOfYear, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setweekofmonth, 0, 0, 1)
-	ZEND_ARG_INFO(0, weekOfMonth)
+	ZEND_ARG_TYPE_INFO(0, weekOfMonth, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setmonthofyear, 0, 0, 1)
-	ZEND_ARG_INFO(0, monthOfYear)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setmillennium, 0, 0, 1)
-	ZEND_ARG_INFO(0, millennium)
+	ZEND_ARG_TYPE_INFO(0, monthOfYear, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addyears, 0, 0, 1)
-	ZEND_ARG_INFO(0, years)
+	ZEND_ARG_TYPE_INFO(0, years, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addmonths, 0, 0, 1)
-	ZEND_ARG_INFO(0, months)
+	ZEND_ARG_TYPE_INFO(0, months, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_adddays, 0, 0, 1)
-	ZEND_ARG_INFO(0, days)
+	ZEND_ARG_TYPE_INFO(0, days, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addhours, 0, 0, 1)
-	ZEND_ARG_INFO(0, hours)
+	ZEND_ARG_TYPE_INFO(0, hours, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addminutes, 0, 0, 1)
-	ZEND_ARG_INFO(0, minutes)
+	ZEND_ARG_TYPE_INFO(0, minutes, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, seconds)
+	ZEND_ARG_TYPE_INFO(0, seconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addmicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addweeks, 0, 0, 1)
-	ZEND_ARG_INFO(0, weeks)
+	ZEND_ARG_TYPE_INFO(0, weeks, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subyears, 0, 0, 1)
-	ZEND_ARG_INFO(0, years)
+	ZEND_ARG_TYPE_INFO(0, years, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_submonths, 0, 0, 1)
-	ZEND_ARG_INFO(0, months)
+	ZEND_ARG_TYPE_INFO(0, months, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subdays, 0, 0, 1)
-	ZEND_ARG_INFO(0, days)
+	ZEND_ARG_TYPE_INFO(0, days, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subhours, 0, 0, 1)
-	ZEND_ARG_INFO(0, hours)
+	ZEND_ARG_TYPE_INFO(0, hours, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subminutes, 0, 0, 1)
-	ZEND_ARG_INFO(0, minutes)
+	ZEND_ARG_TYPE_INFO(0, minutes, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, seconds)
+	ZEND_ARG_TYPE_INFO(0, seconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_submicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subweeks, 0, 0, 1)
-	ZEND_ARG_INFO(0, weeks)
+	ZEND_ARG_TYPE_INFO(0, weeks, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronos_diff, 0, 1, DateInterval, 0)
@@ -675,36 +666,36 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_diffinmicroseconds, 0, 0, 1)
 	ZEND_ARG_INFO(0, other)
-	ZEND_ARG_INFO(0, abs)
+	ZEND_ARG_TYPE_INFO(0, abs, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_between, 0, 0, 2)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_between, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, start)
 	ZEND_ARG_INFO(0, end)
-	ZEND_ARG_INFO(0, equal)
+	ZEND_ARG_TYPE_INFO(0, equal, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_eq, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_eq, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_ne, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_ne, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_gt, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gt, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_gte, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gte, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_lt, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_lt, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_lte, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_lte, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
@@ -884,186 +875,42 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, endOfYear, NULL, ZEND_ACC_PUBLIC)
 #endif
 	PHP_ME(Chronos_Chronos, modify, arginfo_chronos_chronos_modify, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isToday, arginfo_chronos_chronos_istoday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isToday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isTomorrow, arginfo_chronos_chronos_istomorrow, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isTomorrow, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isYesterday, arginfo_chronos_chronos_isyesterday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isYesterday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isThisWeek, arginfo_chronos_chronos_isthisweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isThisWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isNextWeek, arginfo_chronos_chronos_isnextweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isNextWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastWeek, arginfo_chronos_chronos_islastweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isThisMonth, arginfo_chronos_chronos_isthismonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isThisMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isNextMonth, arginfo_chronos_chronos_isnextmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isNextMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastMonth, arginfo_chronos_chronos_islastmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isThisYear, arginfo_chronos_chronos_isthisyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isThisYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isNextYear, arginfo_chronos_chronos_isnextyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isNextYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastYear, arginfo_chronos_chronos_islastyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isFuture, arginfo_chronos_chronos_isfuture, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isFuture, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isPast, arginfo_chronos_chronos_ispast, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isPast, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLeapYear, arginfo_chronos_chronos_isleapyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLeapYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLongYear, arginfo_chronos_chronos_islongyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLongYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isWeekday, arginfo_chronos_chronos_isweekday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isWeekday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isWeekend, arginfo_chronos_chronos_isweekend, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isWeekend, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isMonday, arginfo_chronos_chronos_ismonday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isMonday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isTuesday, arginfo_chronos_chronos_istuesday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isTuesday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isWednesday, arginfo_chronos_chronos_iswednesday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isWednesday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isThursday, arginfo_chronos_chronos_isthursday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isThursday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isFriday, arginfo_chronos_chronos_isfriday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isFriday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isSaturday, arginfo_chronos_chronos_issaturday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isSaturday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isSunday, arginfo_chronos_chronos_issunday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isSunday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isMorning, arginfo_chronos_chronos_ismorning, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isMorning, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isAfternoon, arginfo_chronos_chronos_isafternoon, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isAfternoon, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isEvening, arginfo_chronos_chronos_isevening, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isEvening, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isNight, arginfo_chronos_chronos_isnight, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isNight, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isMidnight, arginfo_chronos_chronos_ismidnight, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isMidnight, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isNoon, arginfo_chronos_chronos_isnoon, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isNoon, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isDaylightSavingTime, arginfo_chronos_chronos_isdaylightsavingtime, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isDaylightSavingTime, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isStandardTime, arginfo_chronos_chronos_isstandardtime, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isStandardTime, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastDayOfMonth, arginfo_chronos_chronos_islastdayofmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastDayOfMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastWeekOfMonth, arginfo_chronos_chronos_islastweekofmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastWeekOfMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, isLastWeekOfYear, arginfo_chronos_chronos_islastweekofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, isLastWeekOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
 	PHP_ME(Chronos_Chronos, getYear, arginfo_chronos_chronos_getyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getMonth, arginfo_chronos_chronos_getmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getDay, arginfo_chronos_chronos_getday, ZEND_ACC_PUBLIC)
@@ -1076,7 +923,6 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, getWeekOfYear, arginfo_chronos_chronos_getweekofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getWeekOfMonth, arginfo_chronos_chronos_getweekofmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, getTimestamp, arginfo_chronos_chronos_gettimestamp, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getAge, arginfo_chronos_chronos_getage, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getDaysInMonth, arginfo_chronos_chronos_getdaysinmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getDaysInYear, arginfo_chronos_chronos_getdaysinyear, ZEND_ACC_PUBLIC)
@@ -1114,7 +960,6 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, setWeekOfYear, arginfo_chronos_chronos_setweekofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setWeekOfMonth, arginfo_chronos_chronos_setweekofmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setMonthOfYear, arginfo_chronos_chronos_setmonthofyear, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, setMillennium, arginfo_chronos_chronos_setmillennium, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, addYears, arginfo_chronos_chronos_addyears, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, addMonths, arginfo_chronos_chronos_addmonths, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, addDays, arginfo_chronos_chronos_adddays, ZEND_ACC_PUBLIC)

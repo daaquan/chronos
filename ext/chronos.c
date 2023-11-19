@@ -23,6 +23,7 @@
 
 
 
+zend_class_entry *chronos_chronosinterface_ce;
 zend_class_entry *chronos_chronos_ce;
 zend_class_entry *chronos_exceptions_invalidformatexception_ce;
 
@@ -36,6 +37,7 @@ static PHP_MINIT_FUNCTION(chronos)
 {
 	REGISTER_INI_ENTRIES();
 	zephir_module_init();
+	ZEPHIR_INIT(Chronos_ChronosInterface);
 	ZEPHIR_INIT(Chronos_Chronos);
 	ZEPHIR_INIT(Chronos_Exceptions_InvalidFormatException);
 	

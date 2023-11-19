@@ -8,14 +8,8 @@ use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 
-class Chronos extends DateTime
+class Chronos extends DateTime implements ChronosInterface
 {
-    const MYSQL_DATE_FORMAT = "Y-m-d";
-    const MYSQL_TIME_FORMAT = "H:i:s";
-    const MYSQL_DATETIME_FORMAT = "Y-m-d H:i:s";
-    const MYSQL_DATETIME_MILLISEC_FORMAT = "Y-m-d H:i:s.v";
-    const MYSQL_DATETIME_MICROSEC_FORMAT = "Y-m-d H:i:s.u";
-
     public function __construct(string datetime = "now", var timezone = null)
     {
         var tempTimezone;
@@ -54,7 +48,7 @@ class Chronos extends DateTime
         return new static(this->format("Y-m-d H:i:s.u"), this->getTimezone());
     }
 
-    public function format(var format, var locale = null) -> string
+    public function format(string format, string locale = null) -> string
     {
         if (locale !== null) {
             this->locale(locale);
@@ -236,182 +230,182 @@ class Chronos extends DateTime
         return parent::modify(modifier);
     }
 
-    public function isToday()
+    public function isToday() -> bool
     {
         return this->format("Y-m-d") === date("Y-m-d");
     }
 
-    public function isTomorrow()
+    public function isTomorrow() -> bool
     {
         return this->format("Y-m-d") === date("Y-m-d", strtotime("tomorrow"));
     }
 
-    public function isYesterday()
+    public function isYesterday() -> bool
     {
         return this->format("Y-m-d") === date("Y-m-d", strtotime("yesterday"));
     }
 
-    public function isThisWeek()
+    public function isThisWeek() -> bool
     {
         return this->format("W") === date("W");
     }
 
-    public function isNextWeek()
+    public function isNextWeek() -> bool
     {
         return this->format("W") === date("W", strtotime("next week"));
     }
 
-    public function isLastWeek()
+    public function isLastWeek() -> bool
     {
         return this->format("W") === date("W", strtotime("last week"));
     }
 
-    public function isThisMonth()
+    public function isThisMonth() -> bool
     {
         return this->format("m") === date("m");
     }
 
-    public function isNextMonth()
+    public function isNextMonth() -> bool
     {
         return this->format("m") === date("m", strtotime("next month"));
     }
 
-    public function isLastMonth()
+    public function isLastMonth() -> bool
     {
         return this->format("m") === date("m", strtotime("last month"));
     }
 
-    public function isThisYear()
+    public function isThisYear() -> bool
     {
         return this->format("Y") === date("Y");
     }
 
-    public function isNextYear()
+    public function isNextYear() -> bool
     {
         return this->format("Y") === date("Y", strtotime("next year"));
     }
 
-    public function isLastYear()
+    public function isLastYear() -> bool
     {
         return this->format("Y") === date("Y", strtotime("last year"));
     }
 
-    public function isFuture()
+    public function isFuture() -> bool
     {
         return this->format("U") > time();
     }
 
-    public function isPast()
+    public function isPast() -> bool
     {
         return this->format("U") < time();
     }
 
-    public function isLeapYear()
+    public function isLeapYear() -> bool
     {
         return this->format("L") === "1";
     }
 
-    public function isLongYear()
+    public function isLongYear() -> bool
     {
         return this->format("L") === "0";
     }
 
-    public function isWeekday()
+    public function isWeekday() -> bool
     {
         return this->format("N") < 6;
     }
 
-    public function isWeekend()
+    public function isWeekend() -> bool
     {
         return this->format("N") > 5;
     }
 
-    public function isMonday()
+    public function isMonday() -> bool
     {
         return this->format("N") === "1";
     }
 
-    public function isTuesday()
+    public function isTuesday() -> bool
     {
         return this->format("N") === "2";
     }
 
-    public function isWednesday()
+    public function isWednesday() -> bool
     {
         return this->format("N") === "3";
     }
 
-    public function isThursday()
+    public function isThursday() -> bool
     {
         return this->format("N") === "4";
     }
 
-    public function isFriday()
+    public function isFriday() -> bool
     {
         return this->format("N") === "5";
     }
 
-    public function isSaturday()
+    public function isSaturday() -> bool
     {
         return this->format("N") === "6";
     }
 
-    public function isSunday()
+    public function isSunday() -> bool
     {
         return this->format("N") === "7";
     }
 
-    public function isMorning()
+    public function isMorning() -> bool
     {
         return this->format("G") < 12;
     }
 
-    public function isAfternoon()
+    public function isAfternoon() -> bool
     {
         return this->format("G") > 11 && this->format("G") < 18;
     }
 
-    public function isEvening()
+    public function isEvening() -> bool
     {
         return this->format("G") > 17 && this->format("G") < 22;
     }
 
-    public function isNight()
+    public function isNight() -> bool
     {
         return this->format("G") > 21 || this->format("G") < 6;
     }
 
-    public function isMidnight()
+    public function isMidnight() -> bool
     {
         return this->format("G") === "0";
     }
 
-    public function isNoon()
+    public function isNoon() -> bool
     {
         return this->format("G") === "12";
     }
 
-    public function isDaylightSavingTime()
+    public function isDaylightSavingTime() -> bool
     {
         return this->format("I") === "1";
     }
 
-    public function isStandardTime()
+    public function isStandardTime() -> bool
     {
         return this->format("I") === "0";
     }
 
-    public function isLastDayOfMonth()
+    public function isLastDayOfMonth() -> bool
     {
         return this->format("t") === this->format("d");
     }
 
-    public function isLastWeekOfMonth()
+    public function isLastWeekOfMonth() -> bool
     {
         return this->format("W") === date("W", strtotime("last day of this month"));
     }
 
-    public function isLastWeekOfYear()
+    public function isLastWeekOfYear() -> bool
     {
         return this->format("W") === date("W", strtotime("last day of december this year"));
     }
@@ -426,7 +420,7 @@ class Chronos extends DateTime
         return this->format("m");
     }
 
-    public function getDay() -> string
+    public function getDay() -> int
     {
         return this->format("d");
     }
@@ -474,11 +468,6 @@ class Chronos extends DateTime
     public function getMonthOfYear() -> int
     {
         return this->format("n");
-    }
-
-    public function getTimestamp() -> int
-    {
-        return this->format("U");
     }
 
     public function getAge() -> int
@@ -606,147 +595,142 @@ class Chronos extends DateTime
         return this->setTimestamp(dateTime->getTimestamp());
     }
 
-    public function setYear(var year)
+    public function setYear(int year)
     {
         return this->setDate(year, this->getMonth(), this->getDay());
     }
 
-    public function setMonth(var month)
+    public function setMonth(int month)
     {
         return this->setDate(this->getYear(), month, this->getDay());
     }
 
-    public function setDay(var day)
+    public function setDay(int day)
     {
         return this->setDate(this->getYear(), this->getMonth(), day);
     }
 
-    public function setHour(var hour)
+    public function setHour(int hour)
     {
         return this->setTime(hour, this->getMinute(), this->getSecond());
     }
 
-    public function setMinute(var minute)
+    public function setMinute(int minute)
     {
         return this->setTime(this->getHour(), minute, this->getSecond());
     }
 
-    public function setSecond(var second)
+    public function setSecond(int second)
     {
         return this->setTime(this->getHour(), this->getMinute(), second);
     }
 
-    public function setMicrosecond(var microsecond)
+    public function setMicrosecond(int microsecond)
     {
         return this->setTime(this->getHour(), this->getMinute(), this->getSecond(), microsecond);
     }
 
-    public function setDayOfWeek(var dayOfWeek)
+    public function setDayOfWeek(int dayOfWeek)
     {
         return this->setISODate(this->getYear(), this->getWeekOfYear(), dayOfWeek);
     }
 
-    public function setDayOfYear(var dayOfYear)
+    public function setDayOfYear(int dayOfYear)
     {
         return this->setDate(this->getYear(), 1, dayOfYear);
     }
 
-    public function setWeekOfYear(var weekOfYear)
+    public function setWeekOfYear(int weekOfYear)
     {
         return this->setISODate(this->getYear(), weekOfYear, this->getDayOfWeek());
     }
 
-    public function setWeekOfMonth(var weekOfMonth)
+    public function setWeekOfMonth(int weekOfMonth)
     {
         return this->setISODate(this->getYear(), this->getWeekOfYear(), this->getDayOfWeek());
     }
 
-    public function setMonthOfYear(var monthOfYear)
+    public function setMonthOfYear(int monthOfYear)
     {
         return this->setDate(this->getYear(), monthOfYear, this->getDay());
     }
 
-    public function setMillennium(var millennium)
-    {
-        return this->setDate(this->getYear(), this->getMonth(), this->getDay());
-    }
-
-    public function addYears(var years)
+    public function addYears(int years)
     {
         return this->add(new \DateInterval("P" . years . "Y"));
     }
 
-    public function addMonths(var months)
+    public function addMonths(int months)
     {
         return this->add(new \DateInterval("P" . months . "M"));
     }
 
-    public function addDays(var days)
+    public function addDays(int days)
     {
         return this->add(new \DateInterval("P" . days . "D"));
     }
 
-    public function addHours(var hours)
+    public function addHours(int hours)
     {
         return this->add(new \DateInterval("PT" . hours . "H"));
     }
 
-    public function addMinutes(var minutes)
+    public function addMinutes(int minutes)
     {
         return this->add(new \DateInterval("PT" . minutes . "M"));
     }
 
-    public function addSeconds(var seconds)
+    public function addSeconds(int seconds)
     {
         return this->add(new \DateInterval("PT" . seconds . "S"));
     }
 
-    public function addMicroseconds(var microseconds)
+    public function addMicroseconds(int microseconds)
     {
         return this->add(new \DateInterval("PT" . microseconds . "S"));
     }
 
-    public function addWeeks(var weeks)
+    public function addWeeks(int weeks)
     {
         return this->add(new \DateInterval("P" . weeks . "W"));
     }
 
-    public function subYears(var years)
+    public function subYears(int years)
     {
         return this->sub(new \DateInterval("P" . years . "Y"));
     }
 
-    public function subMonths(var months)
+    public function subMonths(int months)
     {
         return this->sub(new \DateInterval("P" . months . "M"));
     }
 
-    public function subDays(var days)
+    public function subDays(int days)
     {
         return this->sub(new \DateInterval("P" . days . "D"));
     }
 
-    public function subHours(var hours)
+    public function subHours(int hours)
     {
         return this->sub(new \DateInterval("PT" . hours . "H"));
     }
 
-    public function subMinutes(var minutes)
+    public function subMinutes(int minutes)
     {
         return this->sub(new \DateInterval("PT" . minutes . "M"));
     }
 
-    public function subSeconds(var seconds)
+    public function subSeconds(int seconds)
     {
         return this->sub(new \DateInterval("PT" . seconds . "S"));
     }
 
-    public function subMicroseconds(var microseconds)
+    public function subMicroseconds(int microseconds)
     {
         return this->sub(new \DateInterval("PT" . microseconds . "S"));
     }
 
-    public function subWeeks(var weeks)
+    public function subWeeks(int weeks)
     {
         return this->sub(new \DateInterval("P" . weeks . "W"));
     }
@@ -833,7 +817,7 @@ class Chronos extends DateTime
         return (int) (abs ? abs(diffInDays) : diffInDays);
     }
 
-    public function diffInMicroseconds(var other, var abs = true)
+    public function diffInMicroseconds(var other, bool abs = true)
     {
         var microsecondDiff;
         var timestampMicro2;
@@ -844,7 +828,7 @@ class Chronos extends DateTime
         return (int) (abs ? abs(microsecondDiff) : microsecondDiff);
     }
 
-    public function between(var start, var end, var equal = true)
+    public function between(var start, var end, bool equal = true) -> bool
     {
         if (equal) {
             return this >= start && this <= end;
@@ -852,32 +836,32 @@ class Chronos extends DateTime
         return this > start && this < end;
     }
 
-    public function eq(var dateTime)
+    public function eq(var dateTime) -> bool
     {
         return this == dateTime;
     }
 
-    public function ne(var dateTime)
+    public function ne(var dateTime) -> bool
     {
         return this != dateTime;
     }
 
-    public function gt(var dateTime)
+    public function gt(var dateTime) -> bool
     {
         return this > dateTime;
     }
 
-    public function gte(var dateTime)
+    public function gte(var dateTime) -> bool
     {
         return this >= dateTime;
     }
 
-    public function lt(var dateTime)
+    public function lt(var dateTime) -> bool
     {
         return this < dateTime;
     }
 
-    public function lte(var dateTime)
+    public function lte(var dateTime) -> bool
     {
         return this <= dateTime;
     }
