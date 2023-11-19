@@ -93,7 +93,7 @@ interface ChronosInterface
 
     public function endOfYear();
 
-    public function modify(string $modifier): \DateTime;
+    public function modify(string $modifier): \DateTime|false;
 
     public function isToday(): bool;
 
