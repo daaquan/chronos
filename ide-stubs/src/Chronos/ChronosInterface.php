@@ -8,9 +8,13 @@ namespace Chronos\Chronos;
 interface ChronosInterface
 {
     public const MYSQL_DATE_FORMAT = 'Y-m-d';
+
     public const MYSQL_TIME_FORMAT = 'H:i:s';
+
     public const MYSQL_DATETIME_FORMAT = 'Y-m-d H:i:s';
+
     public const MYSQL_DATETIME_MILLISEC_FORMAT = 'Y-m-d H:i:s.v';
+
     public const MYSQL_DATETIME_MICROSEC_FORMAT = 'Y-m-d H:i:s.u';
 
     public function setTimeZone($timezone): static;
@@ -121,8 +125,6 @@ interface ChronosInterface
 
     public function isLeapYear(): bool;
 
-    public function isLongYear(): bool;
-
     public function isWeekday(): bool;
 
     public function isWeekend(): bool;
@@ -163,29 +165,27 @@ interface ChronosInterface
 
     public function isLastWeekOfYear(): bool;
 
-    public function getYear(): int;
+    public function getYear();
 
-    public function getMonth(): int;
+    public function getMonth();
 
-    public function getDay(): int;
+    public function getDay();
 
-    public function getHour(): int;
+    public function getHour();
 
-    public function getMinute(): int;
+    public function getMinute();
 
-    public function getSecond(): int;
+    public function getSecond();
 
-    public function getMicrosecond(): int;
+    public function getMicrosecond();
 
-    public function getDayOfWeek(): int;
+    public function getDayOfWeek();
 
-    public function getDayOfYear(): int;
+    public function getDayOfYear();
 
-    public function getWeekOfYear(): int;
+    public function getWeekOfYear();
 
-    public function getWeekOfMonth(): int;
-
-    public function getMonthOfYear(): int;
+    public function getMonthOfYear();
 
     public function getAge(): int;
 

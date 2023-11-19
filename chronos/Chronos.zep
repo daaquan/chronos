@@ -305,11 +305,6 @@ class Chronos extends DateTime implements ChronosInterface
         return this->format("L") === "1";
     }
 
-    public function isLongYear() -> bool
-    {
-        return this->format("L") === "0";
-    }
-
     public function isWeekday() -> bool
     {
         return this->format("N") < 6;
@@ -410,62 +405,57 @@ class Chronos extends DateTime implements ChronosInterface
         return this->format("W") === date("W", strtotime("last day of december this year"));
     }
 
-    public function getYear() -> int
+    public function getYear()
     {
         return this->format("Y");
     }
 
-    public function getMonth() -> int
+    public function getMonth()
     {
         return this->format("m");
     }
 
-    public function getDay() -> int
+    public function getDay()
     {
         return this->format("d");
     }
 
-    public function getHour() -> int
+    public function getHour()
     {
         return this->format("H");
     }
 
-    public function getMinute() -> int
+    public function getMinute()
     {
         return this->format("i");
     }
 
-    public function getSecond() -> int
+    public function getSecond()
     {
         return this->format("s");
     }
 
-    public function getMicrosecond() -> int
+    public function getMicrosecond()
     {
         return this->format("u");
     }
 
-    public function getDayOfWeek() -> int
+    public function getDayOfWeek()
     {
         return this->format("N");
     }
 
-    public function getDayOfYear() -> int
+    public function getDayOfYear()
     {
         return this->format("z");
     }
 
-    public function getWeekOfYear() -> int
+    public function getWeekOfYear()
     {
         return this->format("W");
     }
 
-    public function getWeekOfMonth() -> int
-    {
-        return this->format("W");
-    }
-
-    public function getMonthOfYear() -> int
+    public function getMonthOfYear()
     {
         return this->format("n");
     }

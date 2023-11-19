@@ -119,8 +119,6 @@ interface ChronosInterface
 
     public function isLeapYear() -> bool;
 
-    public function isLongYear() -> bool;
-
     public function isWeekday() -> bool;
 
     public function isWeekend() -> bool;
@@ -161,31 +159,27 @@ interface ChronosInterface
 
     public function isLastWeekOfYear() -> bool;
 
-    public function getYear() -> int;
+    public function getYear();
 
-    public function getMonth() -> int;
+    public function getMonth();
 
-    public function getDay() -> int;
+    public function getDay();
 
-    public function getHour() -> int;
+    public function getHour();
 
-    public function getMinute() -> int;
+    public function getMinute();
 
-    public function getSecond() -> int;
+    public function getSecond();
 
-    public function getMicrosecond() -> int;
+    public function getMicrosecond();
 
-    public function getDayOfWeek() -> int;
+    public function getDayOfWeek();
 
-    public function getDayOfYear() -> int;
+    public function getDayOfYear();
 
-    public function getWeekOfYear() -> int;
+    public function getWeekOfYear();
 
-    public function getWeekOfMonth() -> int;
-
-    public function getMonthOfYear() -> int;
-
-    public function getTimestamp() -> int;
+    public function getMonthOfYear();
 
     public function getAge() -> int;
 

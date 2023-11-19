@@ -3,91 +3,91 @@
 use Chronos\Chronos;
 
 it('can create a new Chronos instance', function () {
-    $Chronos = new Chronos();
-    expect($Chronos)->toBeInstanceOf(Chronos::class);
+    $chronos = new Chronos();
+    expect($chronos)->toBeInstanceOf(Chronos::class);
 });
 
 it('can parse a time string', function () {
-    $Chronos = Chronos::parse('2023-01-01');
-    expect($Chronos->format('Y-m-d'))->toBe('2023-01-01');
+    $chronos = Chronos::parse('2023-01-01');
+    expect($chronos->format('Y-m-d'))->toBe('2023-01-01');
 });
 
 it('can copy the instance', function () {
-    $Chronos = new Chronos('2023-01-01');
-    $copy = $Chronos->copy();
+    $chronos = new Chronos('2023-01-01');
+    $copy = $chronos->copy();
     expect($copy)->toBeInstanceOf(Chronos::class);
     expect($copy->format('Y-m-d'))->toBe('2023-01-01');
 });
 
 it('can format the instance', function () {
-    $Chronos = new Chronos('2023-01-01 15:30:00');
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-01-01 15:30:00');
+    $chronos = new Chronos('2023-01-01 15:30:00');
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-01-01 15:30:00');
 });
 
 it('can convert the instance to DateTime', function () {
-    $Chronos = new Chronos('2023-01-01');
-    expect($Chronos->toDateTime())->toBeInstanceOf(DateTime::class);
+    $chronos = new Chronos('2023-01-01');
+    expect($chronos->toDateTime())->toBeInstanceOf(DateTime::class);
 });
 
 it('can convert the instance to DateTimeImmutable', function () {
-    $Chronos = new Chronos('2023-01-01');
-    expect($Chronos->toDateTimeImmutable())->toBeInstanceOf(DateTimeImmutable::class);
+    $chronos = new Chronos('2023-01-01');
+    expect($chronos->toDateTimeImmutable())->toBeInstanceOf(DateTimeImmutable::class);
 });
 
 it('can get today', function () {
-    $Chronos = new Chronos();
-    $today = $Chronos->today()->format('Y-m-d');
+    $chronos = new Chronos();
+    $today = $chronos->today()->format('Y-m-d');
     expect($today)->toBe(date('Y-m-d'));
 });
 
 it('can get tomorrow', function () {
-    $Chronos = new Chronos();
-    $tomorrow = $Chronos->tomorrow()->format('Y-m-d');
+    $chronos = new Chronos();
+    $tomorrow = $chronos->tomorrow()->format('Y-m-d');
     $expected = (new DateTime('+1 day'))->format('Y-m-d');
     expect($tomorrow)->toBe($expected);
 });
 
 it('can get yesterday', function () {
-    $Chronos = new Chronos();
-    $yesterday = $Chronos->yesterday()->format('Y-m-d');
+    $chronos = new Chronos();
+    $yesterday = $chronos->yesterday()->format('Y-m-d');
     $expected = (new DateTime('-1 day'))->format('Y-m-d');
     expect($yesterday)->toBe($expected);
 });
 
 it('can get the start of the day', function () {
-    $Chronos = new Chronos('2023-01-01 15:30:00');
-    $Chronos->startOfDay();
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-01-01 00:00:00');
+    $chronos = new Chronos('2023-01-01 15:30:00');
+    $chronos->startOfDay();
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-01-01 00:00:00');
 });
 
 it('can get the start of the month', function () {
-    $Chronos = new Chronos('2023-01-15');
-    $Chronos->startOfMonth();
-    expect($Chronos->format('Y-m-d'))->toBe('2023-01-01');
+    $chronos = new Chronos('2023-01-15');
+    $chronos->startOfMonth();
+    expect($chronos->format('Y-m-d'))->toBe('2023-01-01');
 });
 
 it('can get the start of the year', function () {
-    $Chronos = new Chronos('2023-05-01');
-    $Chronos->startOfYear();
-    expect($Chronos->format('Y-m-d'))->toBe('2023-01-01');
+    $chronos = new Chronos('2023-05-01');
+    $chronos->startOfYear();
+    expect($chronos->format('Y-m-d'))->toBe('2023-01-01');
 });
 
 it('can get the end of the day', function () {
-    $Chronos = new Chronos('2023-05-01');
-    $Chronos->endOfDay();
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 23:59:59');
+    $chronos = new Chronos('2023-05-01');
+    $chronos->endOfDay();
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 23:59:59');
 });
 
 it('can get the end of the month', function () {
-    $Chronos = new Chronos('2023-05-01');
-    $Chronos->endOfMonth();
-    expect($Chronos->format('Y-m-d'))->toBe('2023-05-31');
+    $chronos = new Chronos('2023-05-01');
+    $chronos->endOfMonth();
+    expect($chronos->format('Y-m-d'))->toBe('2023-05-31');
 });
 
 it('can get the end of the year', function () {
-    $Chronos = new Chronos('2023-05-01');
-    $Chronos->endOfYear();
-    expect($Chronos->format('Y-m-d'))->toBe('2023-12-31');
+    $chronos = new Chronos('2023-05-01');
+    $chronos->endOfYear();
+    expect($chronos->format('Y-m-d'))->toBe('2023-12-31');
 });
 
 it('has correct days in week', function () {
@@ -230,14 +230,14 @@ it('calculates diffInMonths correctly', function () {
 });
 
 it('calculates diffInYears correctly', function () {
-    $Chronos5 = new Chronos('2024-05-01 00:00:00');
-    $diffInYears = $this->Chronos1->diffInYears($Chronos5);
+    $chronos5 = new Chronos('2024-05-01 00:00:00');
+    $diffInYears = $this->Chronos1->diffInYears($chronos5);
     expect($diffInYears)->toBe(1);
 });
 
 it('calculates diffInWeeks correctly', function () {
-    $Chronos6 = new Chronos('2023-05-08 00:00:00');
-    $diffInWeeks = $this->Chronos1->diffInWeeks($Chronos6);
+    $chronos6 = new Chronos('2023-05-08 00:00:00');
+    $diffInWeeks = $this->Chronos1->diffInWeeks($chronos6);
     expect($diffInWeeks)->toBe(1);
 });
 
@@ -247,8 +247,8 @@ it('calculates diffInDays correctly', function () {
 });
 
 it('calculates diffInMicroseconds correctly', function () {
-    $Chronos7 = new Chronos('2023-05-01 00:00:00.150321');
-    $diffInMicroseconds = $this->Chronos1->diffInMicroseconds($Chronos7);
+    $chronos7 = new Chronos('2023-05-01 00:00:00.150321');
+    $diffInMicroseconds = $this->Chronos1->diffInMicroseconds($chronos7);
     expect($diffInMicroseconds)->toBe(150321);
 });
 
@@ -288,75 +288,75 @@ it('checks if date is less than or equal to another date correctly', function ()
 });
 
 it('checks datetime when add minutes correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addMinutes(30);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:30:00');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addMinutes(30);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:30:00');
 });
 
 it('checks datetime when add seconds correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addSeconds(30);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:30');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addSeconds(30);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:30');
 });
 
 it('checks datetime when add hours correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addHours(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 01:00:00');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addHours(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 01:00:00');
 });
 
 it('checks datetime when add days correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addDays(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-02 00:00:00');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addDays(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-02 00:00:00');
 });
 
 it('checks datetime when add months correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addMonths(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-06-01 00:00:00');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addMonths(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-06-01 00:00:00');
 });
 
 it('checks datetime when add years correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:00');
-    $Chronos->addYears(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2024-05-01 00:00:00');
+    $chronos = new Chronos('2023-05-01 00:00:00');
+    $chronos->addYears(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2024-05-01 00:00:00');
 });
 
 it('checks datetime when sub minutes correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:30:00');
-    $Chronos->subMinutes(30);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2023-05-01 00:30:00');
+    $chronos->subMinutes(30);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('checks datetime when sub seconds correctly', function () {
-    $Chronos = new Chronos('2023-05-01 00:00:30');
-    $Chronos->subSeconds(30);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2023-05-01 00:00:30');
+    $chronos->subSeconds(30);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('checks datetime when sub hours correctly', function () {
-    $Chronos = new Chronos('2023-05-01 01:00:00');
-    $Chronos->subHours(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2023-05-01 01:00:00');
+    $chronos->subHours(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('checks datetime when sub days correctly', function () {
-    $Chronos = new Chronos('2023-05-02 00:00:00');
-    $Chronos->subDays(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2023-05-02 00:00:00');
+    $chronos->subDays(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('checks datetime when sub months correctly', function () {
-    $Chronos = new Chronos('2023-06-01 00:00:00');
-    $Chronos->subMonths(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2023-06-01 00:00:00');
+    $chronos->subMonths(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('checks datetime when sub years correctly', function () {
-    $Chronos = new Chronos('2024-05-01 00:00:00');
-    $Chronos->subYears(1);
-    expect($Chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
+    $chronos = new Chronos('2024-05-01 00:00:00');
+    $chronos->subYears(1);
+    expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 00:00:00');
 });
 
 it('returns date week string correctly', function () {
@@ -365,11 +365,11 @@ it('returns date week string correctly', function () {
 });
 
 it('can set the timezone', function () {
-    $Chronos = new Chronos();
-    expect($Chronos->getTimezone()->getName())->toBe(date_default_timezone_get());
-    expect($Chronos->getOffset())->toBe(timezone_offset_get($Chronos->getTimezone(), $Chronos)); // ex) Asia/Tokyo -> UTC/GMT +9 hour
+    $chronos = new Chronos();
+    expect($chronos->getTimezone()->getName())->toBe(date_default_timezone_get());
+    expect($chronos->getOffset())->toBe(timezone_offset_get($chronos->getTimezone(), $chronos)); // ex) Asia/Tokyo -> UTC/GMT +9 hour
 
-    $Chronos->setTimezone(new DateTimeZone('Europe/Berlin'));
-    expect($Chronos->getTimezone()->getName())->toBe('Europe/Berlin');
-    expect($Chronos->getOffset())->toBe(3600); // UTC/GMT +1 hour
+    $chronos->setTimezone(new DateTimeZone('Europe/Berlin'));
+    expect($chronos->getTimezone()->getName())->toBe('Europe/Berlin');
+    expect($chronos->getOffset())->toBe(3600); // UTC/GMT +1 hour
 });

@@ -1351,26 +1351,6 @@ PHP_METHOD(Chronos_Chronos, isLeapYear)
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING_IDENTICAL(&_0, "1"));
 }
 
-PHP_METHOD(Chronos_Chronos, isLongYear)
-{
-	zval _0, _1;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
-
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(&_1);
-	ZVAL_STRING(&_1, "L");
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "format", NULL, 0, &_1);
-	zephir_check_call_status();
-	RETURN_MM_BOOL(ZEPHIR_IS_STRING_IDENTICAL(&_0, "0"));
-}
-
 PHP_METHOD(Chronos_Chronos, isWeekday)
 {
 	zval _0, _1;
@@ -2002,25 +1982,6 @@ PHP_METHOD(Chronos_Chronos, getDayOfYear)
 }
 
 PHP_METHOD(Chronos_Chronos, getWeekOfYear)
-{
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(&_0);
-	ZVAL_STRING(&_0, "W");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "format", NULL, 0, &_0);
-	zephir_check_call_status();
-	RETURN_MM();
-}
-
-PHP_METHOD(Chronos_Chronos, getWeekOfMonth)
 {
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -3139,35 +3100,31 @@ PHP_METHOD(Chronos_Chronos, addSeconds)
 
 PHP_METHOD(Chronos_Chronos, addMicroseconds)
 {
-	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *microseconds_param = NULL, _0, _1;
-	zend_long microseconds, ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *microseconds, microseconds_sub, _0, _1;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&microseconds_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_2);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_LONG(microseconds)
+		Z_PARAM_ZVAL(microseconds)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &microseconds_param);
-	microseconds = zephir_get_intval(microseconds_param);
+	zephir_fetch_params(1, 1, 0, &microseconds);
 
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, php_date_get_interval_ce());
 	ZEPHIR_INIT_VAR(&_1);
-	ZVAL_LONG(&_1, microseconds);
-	ZEPHIR_INIT_VAR(&_2);
-	ZEPHIR_CONCAT_SVS(&_2, "PT", &_1, "S");
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0, &_2);
+	ZEPHIR_CONCAT_SVS(&_1, "PT", microseconds, "S");
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "add", NULL, 0, &_0);
 	zephir_check_call_status();
@@ -3435,35 +3392,31 @@ PHP_METHOD(Chronos_Chronos, subSeconds)
 
 PHP_METHOD(Chronos_Chronos, subMicroseconds)
 {
-	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *microseconds_param = NULL, _0, _1;
-	zend_long microseconds, ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *microseconds, microseconds_sub, _0, _1;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&microseconds_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_2);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_LONG(microseconds)
+		Z_PARAM_ZVAL(microseconds)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &microseconds_param);
-	microseconds = zephir_get_intval(microseconds_param);
+	zephir_fetch_params(1, 1, 0, &microseconds);
 
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, php_date_get_interval_ce());
 	ZEPHIR_INIT_VAR(&_1);
-	ZVAL_LONG(&_1, microseconds);
-	ZEPHIR_INIT_VAR(&_2);
-	ZEPHIR_CONCAT_SVS(&_2, "PT", &_1, "S");
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0, &_2);
+	ZEPHIR_CONCAT_SVS(&_1, "PT", microseconds, "S");
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "sub", NULL, 0, &_0);
 	zephir_check_call_status();

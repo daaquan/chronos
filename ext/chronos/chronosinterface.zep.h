@@ -173,9 +173,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_isleapyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_islongyear, 0, 0, _IS_BOOL, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_isweekday, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
@@ -236,43 +233,37 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_islastweekofyear, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getyear, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getmonth, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getmonth, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getday, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getday, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_gethour, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_gethour, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getminute, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getminute, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getsecond, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getsecond, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getmicrosecond, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getmicrosecond, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getdayofweek, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getdayofweek, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getdayofyear, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getdayofyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getweekofyear, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getweekofyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getweekofmonth, 0, 0, IS_LONG, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getmonthofyear, 0, 0, IS_LONG, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_gettimestamp, 0, 0, IS_LONG, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_getmonthofyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_getage, 0, 0, IS_LONG, 0)
@@ -424,7 +415,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addmicroseconds, 0, 0, 1)
-	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
+	ZEND_ARG_INFO(0, microseconds)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addweeks, 0, 0, 1)
@@ -456,7 +447,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_subseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_submicroseconds, 0, 0, 1)
-	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
+	ZEND_ARG_INFO(0, microseconds)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_subweeks, 0, 0, 1)
@@ -596,7 +587,6 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isFuture, arginfo_chronos_chronosinterface_isfuture)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isPast, arginfo_chronos_chronosinterface_ispast)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isLeapYear, arginfo_chronos_chronosinterface_isleapyear)
-	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isLongYear, arginfo_chronos_chronosinterface_islongyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isWeekday, arginfo_chronos_chronosinterface_isweekday)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isWeekend, arginfo_chronos_chronosinterface_isweekend)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isMonday, arginfo_chronos_chronosinterface_ismonday)
@@ -627,9 +617,7 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getDayOfWeek, arginfo_chronos_chronosinterface_getdayofweek)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getDayOfYear, arginfo_chronos_chronosinterface_getdayofyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getWeekOfYear, arginfo_chronos_chronosinterface_getweekofyear)
-	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getWeekOfMonth, arginfo_chronos_chronosinterface_getweekofmonth)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getMonthOfYear, arginfo_chronos_chronosinterface_getmonthofyear)
-	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getTimestamp, arginfo_chronos_chronosinterface_gettimestamp)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getAge, arginfo_chronos_chronosinterface_getage)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getDaysInMonth, arginfo_chronos_chronosinterface_getdaysinmonth)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, getDaysInYear, arginfo_chronos_chronosinterface_getdaysinyear)
