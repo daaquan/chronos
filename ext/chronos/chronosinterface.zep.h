@@ -28,10 +28,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_locale, 0, 0, 1)
 	ZEND_ARG_INFO(0, locale)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_todatetime, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronosinterface_todatetime, 0, 0, DateTime, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_todatetimeimmutable, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronosinterface_todatetimeimmutable, 0, 0, DateTimeImmutable, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_todatetimestring, 0, 0, 0)
@@ -415,7 +415,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addmicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_addweeks, 0, 0, 1)
@@ -447,7 +447,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_subseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_submicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_subweeks, 0, 0, 1)

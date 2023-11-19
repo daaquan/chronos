@@ -76,17 +76,15 @@ class Chronos extends \DateTime implements ChronosInterface
 
     /**
      * 現在のインスタンスをDateTimeで返却する
-     *
-     * @return \DateTime
      */
-    public function toDateTime()
+    public function toDateTime(): \DateTime
     {
     }
 
     /**
      * 現在のインスタンスをDateTimeImmutableで返却する
      */
-    public function toDateTimeImmutable()
+    public function toDateTimeImmutable(): \DateTimeImmutable
     {
     }
 

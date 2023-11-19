@@ -63,34 +63,34 @@ class Chronos extends DateTime implements ChronosInterface
         return this;
     }
 
-    public function toDateTime()
+    public function toDateTime() -> <DateTime>
     {
         return DateTime::createFromInterface(this);
     }
 
-    public function toDateTimeImmutable()
+    public function toDateTimeImmutable() -> <DateTimeImmutable>
     {
         return DateTimeImmutable::createFromMutable(this);
     }
 
     public function toDateTimeString()
     {
-        return this->format(self::MYSQL_DATETIME_FORMAT);
+        return this->format(ChronosInterface::MYSQL_DATETIME_FORMAT);
     }
 
     public function toDateString()
     {
-        return this->format(self::MYSQL_DATE_FORMAT);
+        return this->format(ChronosInterface::MYSQL_DATE_FORMAT);
     }
 
     public function toDateWeekString()
     {
-        return this->format(self::MYSQL_DATE_FORMAT . "(D)");
+        return this->format(ChronosInterface::MYSQL_DATE_FORMAT . "(D)");
     }
 
     public function toTimeString()
     {
-        return this->format(self::MYSQL_TIME_FORMAT);
+        return this->format(ChronosInterface::MYSQL_TIME_FORMAT);
     }
 
     public function toDayOfWeekString()

@@ -29,9 +29,9 @@ interface ChronosInterface
 
     public function locale($locale);
 
-    public function toDateTime();
+    public function toDateTime(): \DateTime;
 
-    public function toDateTimeImmutable();
+    public function toDateTimeImmutable(): \DateTimeImmutable;
 
     public function toDateTimeString();
 

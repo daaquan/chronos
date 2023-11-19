@@ -190,10 +190,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_locale, 0, 0, 1)
 	ZEND_ARG_INFO(0, locale)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_todatetime, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronos_todatetime, 0, 0, DateTime, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_todatetimeimmutable, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronos_todatetimeimmutable, 0, 0, DateTimeImmutable, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_todatetimestring, 0, 0, 0)
@@ -577,7 +577,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addmicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_addweeks, 0, 0, 1)
@@ -609,7 +609,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subseconds, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_submicroseconds, 0, 0, 1)
-	ZEND_ARG_INFO(0, microseconds)
+	ZEND_ARG_TYPE_INFO(0, microseconds, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_subweeks, 0, 0, 1)
@@ -706,16 +706,8 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 #endif
 	PHP_ME(Chronos_Chronos, format, arginfo_chronos_chronos_format, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, locale, arginfo_chronos_chronos_locale, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, toDateTime, arginfo_chronos_chronos_todatetime, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDateTime, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, toDateTimeImmutable, arginfo_chronos_chronos_todatetimeimmutable, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDateTimeImmutable, NULL, ZEND_ACC_PUBLIC)
-#endif
 #if PHP_VERSION_ID >= 80000
 	PHP_ME(Chronos_Chronos, toDateTimeString, arginfo_chronos_chronos_todatetimestring, ZEND_ACC_PUBLIC)
 #else
