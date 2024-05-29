@@ -369,7 +369,7 @@ it('can set the timezone', function () {
     expect($chronos->getTimezone()->getName())->toBe(date_default_timezone_get());
     expect($chronos->getOffset())->toBe(timezone_offset_get($chronos->getTimezone(), $chronos)); // ex) Asia/Tokyo -> UTC/GMT +9 hour
 
-    $chronos->setTimezone(new DateTimeZone('Europe/Berlin'));
-    expect($chronos->getTimezone()->getName())->toBe('Europe/Berlin');
-    expect($chronos->getOffset())->toBe(3600); // UTC/GMT +1 hour
+    $chronos->setTimezone(new DateTimeZone('Asia/Tokyo'));
+    expect($chronos->getTimezone()->getName())->toBe('Asia/Tokyo');
+    expect($chronos->getOffset())->toBe(3600 * 9); // UTC/GMT +9 hour
 });
