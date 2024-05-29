@@ -40,7 +40,7 @@ jobs:
 
       - name: Validate extension
         if: success()
-        run: 
+        run: |
           composer install
           ./vendor/bin/pest ide-stubs/tests
 
