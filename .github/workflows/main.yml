@@ -23,14 +23,10 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: pecl
 
-      - name: Build extension
-        run: |
-          cd ext/
-          zephir fullclean
-          zephir build
-
       - name: Install from ext/ directory
         run: |
+          cd ext/
+          zephir fullclean && zephir build
           sudo ./install
 
       - name: Validate extension
