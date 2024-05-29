@@ -41,8 +41,8 @@ jobs:
       - name: Validate extension
         if: success()
         run: |
+          echo 'extension=chronos' > /etc/php/8.3/cli/conf.d/20-chronos.ini
           composer install
-          php --ini
           ./vendor/bin/pest ide-stubs/tests
 
       - name: Upload artifact
