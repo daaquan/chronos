@@ -37,6 +37,13 @@ jobs:
         if: success()
         run: php -d extension=chronos -r 'echo Chronos\Chronos::now()->toDateTimeString();' || exit 1
 
+
+      - name: Validate extension
+        if: success()
+        run: 
+          composer install
+          ./vendor/bin/pest ide-stubs/tests
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
