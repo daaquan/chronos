@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install requirements
+        run: sudo apt updte && sudo apt install -y libtool
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
