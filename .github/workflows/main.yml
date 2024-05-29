@@ -1,4 +1,4 @@
-tname: Build Zephir Extension
+name: Build Zephir Extension
 
 on:
   push:
