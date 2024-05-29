@@ -42,7 +42,7 @@ jobs:
         if: success()
         run: |
           composer install
-          ./vendor/bin/pest ide-stubs/tests
+          php -d extension=chronos -r './vendor/bin/pest ide-stubs/tests' || exit 1
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
