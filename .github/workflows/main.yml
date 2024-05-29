@@ -23,12 +23,22 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: pecl
 
-      - name: Install from build/ directory
+      - name: Build extension
         run: |
           cd ext/
-          zephir fullclean && zephir build
+          zephir fullclean
+          zephir build
+
+      - name: Install from ext/ directory
+        run: |
           sudo ./install
 
       - name: Validate extension
         if: success()
         run: php -d extension=chronos -r 'echo Chronos\Chronos::now()->toDateTimeString();' || exit 1
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: extension
+          path: ext/modules/chronos.so
