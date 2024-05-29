@@ -41,9 +41,8 @@ jobs:
       - name: Validate extension
         if: success()
         run: |
-          sudo echo 'extension=chronos' > /etc/php/8.3/cli/conf.d/20-chronos.ini
           composer install
-          ./vendor/bin/pest ide-stubs/tests
+          php -d extension=chronos ./vendor/bin/pest ide-stubs/tests
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
