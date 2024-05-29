@@ -1,0 +1,28 @@
+name: Build Zephir Extension
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php php-dev php-pear git re2c
+          sudo pecl install zephir
+
+      - name: Build extension
+        run: zephir build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: extension
+          path: ext/modules/chronos.so
