@@ -1,4 +1,4 @@
-name: Build Zephir Extension
+tname: Build Zephir Extension
 
 on:
   push:
@@ -25,8 +25,8 @@ jobs:
 
       - name: Install from build/ directory
         run: |
-          cd build/
-          php gen-build.php
+          cd ext/
+          zephir fullclean && zephir build
           sudo ./install
 
       - name: Validate extension
