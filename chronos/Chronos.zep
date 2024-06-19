@@ -10,6 +10,28 @@ use DateTimeZone;
 
 class Chronos extends DateTime implements ChronosInterface
 {
+    protected static plural = [
+        "~(quiz)$~i" : "$1zes",
+        "~^(ox)$~i" : "$1en",
+        "~([m|l])ouse$~i" : "$1ice",
+        "~(matr|vert|ind)ix|ex$~i" : "$1ices",
+        "~(x|ch|ss|sh)$~i" : "$1es",
+        "~([^aeiouy]|qu)y$~i" : "$1ies",
+        "~(hive)$~i" : "$1s",
+        "~(?:([^f])fe|([lr])f)$~i" : "$1$2ves",
+        "~(shea|lea|loa|thie)f$~i" : "$1ves",
+        "~sis$~i" : "ses",
+        "~([ti])um$~i" : "$1a",
+        "~(tomat|potat|ech|her|vet)o$~i" : "$1oes",
+        "~(bu)s$~i" : "$1ses",
+        "~(alias)$~i" : "$1es",
+        "~(octop)us$~i" : "$1i",
+        "~(ax|test)is$~i" : "$1es",
+        "~(us)$~i" : "$1es",
+        "~s$~i" : "s",
+        "~$~" : "s"
+    ];
+
     public function __construct(string datetime = "now", var timezone = null)
     {
         var tempTimezone;
@@ -859,5 +881,115 @@ class Chronos extends DateTime implements ChronosInterface
     public function __toString() -> string
     {
         return this->toDateTimeString();
+    }
+
+    public static function parse($time = 'now', $timezone = null): static
+    {
+        return new static($time, $timezone);
+    }
+
+    public static function now($timezone = null): static
+    {
+        return new static('now');
+    }
+
+    public function copy(): static
+    {
+        return new static($this->format('Y-m-d H:i:s.u'), $this->getTimezone());
+    }
+
+    public function diffForHumans(ChronosInterface other, string language = "en") -> string
+    {
+        var interval, translation, suffix, readableInterval;
+
+        let interval = this->diff(other);
+        let translation = this->getTranslation(language);
+        if other < this {
+            let suffix = translation["suffix_past"];
+        } else {
+            let suffix = translation["suffix_future"];
+        }
+
+        let readableInterval = this->getReadableInterval(interval, translation);
+        return implode(" ", readableInterval) . suffix;
+    }
+
+    private function getTranslations() -> array
+    {
+        return [
+            "en" => [
+                "suffix_past" => " ago",
+                "suffix_future" => " from now",
+                "year" => " year",
+                "month" => " month",
+                "day" => " day",
+                "hour" => " hour",
+                "minute" => " minute",
+                "second" => " second"
+            ],
+            "ja" => [
+                "suffix_past" => "前",
+                "suffix_future" => "後",
+                "year" => "年",
+                "month" => "ヶ月",
+                "day" => "日",
+                "hour" => "時間",
+                "minute" => "分",
+                "second" => "秒"
+            ]
+        ];
+    }
+
+    private function getTranslation(string language) -> array
+    {
+        var translations;
+
+        let translations = this->getTranslations();
+
+        if !isset(translations[language]) {
+            throw new \RuntimeException("Language " . language . " is not supported.");
+        }
+
+        return translations[language];
+    }
+
+    private function getReadableInterval(DateInterval interval, array translation) -> array
+    {
+        var readable, key, unit, result, word;
+
+        let readable = [];
+        for key, unit in ["y" : "year", "m" : "month", "d" : "day", "h" : "hour", "i" : "minute", "s" : "second"] {
+            if fetch word, interval->{key} {
+                let result = translation[unit];
+
+                if interval->{key} > 1 {
+                    for rule, replacement in static::plural {
+                        if preg_match(rule, word) {
+                            let result = preg_replace(rule, replacement, word);
+                            break;
+                        }
+                    }
+                }
+
+                let readable[] = interval->{key} . result;
+                if count(readable) > 1 {
+                    break;
+                }
+            }
+        }
+
+        return readable;
+    }
+
+    public function freeze(\DateTimeInterface dateTime)
+    {
+        var formattedDate;
+
+        if !class_exists("\Spatie\PestPluginTestTime\TestTime") {
+            throw new \RuntimeException("Please install spatie/pest-plugin-test-time");
+        }
+
+        let formattedDate = dateTime->format("Y-m-d H:i:s");
+        return (new \Spatie\PestPluginTestTime\TestTime())->freeze(formattedDate);
     }
 }

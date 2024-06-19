@@ -320,4 +320,8 @@ interface ChronosInterface
     public function lte(dateTime) -> bool;
 
     public function __toString() -> string;
+
+    public function diffForHumans(<ChronosInterface> other, string language = "en") -> string;
+
+    public function freeze(<\DateTimeInterface> dateTime);
 }
