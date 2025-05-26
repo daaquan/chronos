@@ -171,7 +171,7 @@ interface ChronosInterface
 
     public function getSecond();
 
-    public function getMicrosecond()-> int;
+    public function getMicrosecond() -> int;
 
     public function getDayOfWeek();
 
@@ -242,8 +242,6 @@ interface ChronosInterface
     public function setMinute(int minute);
 
     public function setSecond(int second);
-
-    public function setMicrosecond(int microsecond);
 
     public function setDayOfWeek(int dayOfWeek);
 

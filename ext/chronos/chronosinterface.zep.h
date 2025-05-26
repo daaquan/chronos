@@ -366,10 +366,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_setsecond, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, second, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_setmicrosecond, 0, 0, 1)
-	ZEND_ARG_TYPE_INFO(0, microsecond, IS_LONG, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_setdayofweek, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, dayOfWeek, IS_LONG, 0)
 ZEND_END_ARG_INFO()
@@ -649,7 +645,6 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setHour, arginfo_chronos_chronosinterface_sethour)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setMinute, arginfo_chronos_chronosinterface_setminute)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setSecond, arginfo_chronos_chronosinterface_setsecond)
-	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setMicrosecond, arginfo_chronos_chronosinterface_setmicrosecond)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setDayOfWeek, arginfo_chronos_chronosinterface_setdayofweek)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setDayOfYear, arginfo_chronos_chronosinterface_setdayofyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, setWeekOfYear, arginfo_chronos_chronosinterface_setweekofyear)

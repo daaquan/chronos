@@ -905,13 +905,6 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * マイクロ秒を設定する
-     */
-    public function setMicrosecond(int $microsecond)
-    {
-    }
-
-    /**
      * 曜日を設定する
      */
     public function setDayOfWeek(int $dayOfWeek)

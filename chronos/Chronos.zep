@@ -437,7 +437,7 @@ class Chronos extends DateTime implements ChronosInterface
         return this->format("s");
     }
 
-    public function getMicrosecond()-> int
+    public function getMicrosecond() -> int
     {
         return this->format("u");
     }
@@ -615,11 +615,6 @@ class Chronos extends DateTime implements ChronosInterface
     public function setSecond(int second)
     {
         return this->setTime(this->getHour(), this->getMinute(), second);
-    }
-
-    public function setMicrosecond(int microsecond)
-    {
-        return this->setTime(this->getHour(), this->getMinute(), this->getSecond(), microsecond);
     }
 
     public function setDayOfWeek(int dayOfWeek)

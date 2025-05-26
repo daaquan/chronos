@@ -249,8 +249,6 @@ interface ChronosInterface
 
     public function setSecond(int $second);
 
-    public function setMicrosecond(int $microsecond);
-
     public function setDayOfWeek(int $dayOfWeek);
 
     public function setDayOfYear(int $dayOfYear);

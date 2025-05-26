@@ -117,7 +117,6 @@ PHP_METHOD(Chronos_Chronos, setDay);
 PHP_METHOD(Chronos_Chronos, setHour);
 PHP_METHOD(Chronos_Chronos, setMinute);
 PHP_METHOD(Chronos_Chronos, setSecond);
-PHP_METHOD(Chronos_Chronos, setMicrosecond);
 PHP_METHOD(Chronos_Chronos, setDayOfWeek);
 PHP_METHOD(Chronos_Chronos, setDayOfYear);
 PHP_METHOD(Chronos_Chronos, setWeekOfYear);
@@ -521,10 +520,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setsecond, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, second, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setmicrosecond, 0, 0, 1)
-	ZEND_ARG_TYPE_INFO(0, microsecond, IS_LONG, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_setdayofweek, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, dayOfWeek, IS_LONG, 0)
 ZEND_END_ARG_INFO()
@@ -834,7 +829,6 @@ PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, 
 	PHP_ME(Chronos_Chronos, setHour, arginfo_chronos_chronos_sethour, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setMinute, arginfo_chronos_chronos_setminute, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setSecond, arginfo_chronos_chronos_setsecond, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, setMicrosecond, arginfo_chronos_chronos_setmicrosecond, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setDayOfWeek, arginfo_chronos_chronos_setdayofweek, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setDayOfYear, arginfo_chronos_chronos_setdayofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, setWeekOfYear, arginfo_chronos_chronos_setweekofyear, ZEND_ACC_PUBLIC)

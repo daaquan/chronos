@@ -2356,35 +2356,6 @@ PHP_METHOD(Chronos_Chronos, setSecond)
 	RETURN_MM();
 }
 
-PHP_METHOD(Chronos_Chronos, setMicrosecond)
-{
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *microsecond_param = NULL, _0, _1, _2, _3;
-	zend_long microsecond, ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3);
-	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_LONG(microsecond)
-	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 0, &microsecond_param);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "gethour", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getminute", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getsecond", NULL, 0);
-	zephir_check_call_status();
-	ZVAL_LONG(&_3, microsecond);
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "settime", NULL, 0, &_0, &_1, &_2, &_3);
-	zephir_check_call_status();
-	RETURN_MM();
-}
-
 PHP_METHOD(Chronos_Chronos, setDayOfWeek)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -3573,7 +3544,7 @@ PHP_METHOD(Chronos_Chronos, parse)
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &_1$$4, "__construct", NULL, 6, &_2$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_1$$4, "chronos/Chronos.zep", 872);
+			zephir_throw_exception_debug(&_1$$4, "chronos/Chronos.zep", 867);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -3670,10 +3641,10 @@ PHP_METHOD(Chronos_Chronos, diffForHumans)
 	zephir_check_call_status();
 	if (ZEPHIR_LT(other, this_ptr)) {
 		zephir_memory_observe(&suffix);
-		zephir_array_fetch_string(&suffix, &translation, SL("suffix_past"), PH_NOISY, "chronos/Chronos.zep", 893);
+		zephir_array_fetch_string(&suffix, &translation, SL("suffix_past"), PH_NOISY, "chronos/Chronos.zep", 888);
 	} else {
 		ZEPHIR_OBS_NVAR(&suffix);
-		zephir_array_fetch_string(&suffix, &translation, SL("suffix_future"), PH_NOISY, "chronos/Chronos.zep", 895);
+		zephir_array_fetch_string(&suffix, &translation, SL("suffix_future"), PH_NOISY, "chronos/Chronos.zep", 890);
 	}
 	ZEPHIR_CALL_METHOD(&readableInterval, this_ptr, "getreadableinterval", NULL, 8, &interval, &translation);
 	zephir_check_call_status();
@@ -3749,11 +3720,11 @@ PHP_METHOD(Chronos_Chronos, getTranslation)
 		ZEPHIR_CONCAT_SVS(&_1$$3, "Language ", &language, " is not supported.");
 		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", NULL, 10, &_1$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_0$$3, "chronos/Chronos.zep", 935);
+		zephir_throw_exception_debug(&_0$$3, "chronos/Chronos.zep", 930);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_array_fetch(&_2, &translations, &language, PH_NOISY | PH_READONLY, "chronos/Chronos.zep", 938);
+	zephir_array_fetch(&_2, &translations, &language, PH_NOISY | PH_READONLY, "chronos/Chronos.zep", 933);
 	RETURN_CTOR(&_2);
 }
 
@@ -3816,7 +3787,7 @@ PHP_METHOD(Chronos_Chronos, getReadableInterval)
 	add_assoc_stringl_ex(&_0, SL("h"), SL("hour"));
 	add_assoc_stringl_ex(&_0, SL("i"), SL("minute"));
 	add_assoc_stringl_ex(&_0, SL("s"), SL("second"));
-	zephir_is_iterable(&_0, 0, "chronos/Chronos.zep", 967);
+	zephir_is_iterable(&_0, 0, "chronos/Chronos.zep", 962);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
 		{
@@ -3831,12 +3802,12 @@ PHP_METHOD(Chronos_Chronos, getReadableInterval)
 			ZEPHIR_OBS_NVAR(&word);
 			if (zephir_fetch_property_zval(&word, interval, &key, PH_SILENT_CC)) {
 				ZEPHIR_OBS_NVAR(&result);
-				zephir_array_fetch(&result, &translation, &unit, PH_NOISY, "chronos/Chronos.zep", 948);
+				zephir_array_fetch(&result, &translation, &unit, PH_NOISY, "chronos/Chronos.zep", 943);
 				ZEPHIR_OBS_NVAR(&_5$$4);
 				zephir_read_property_zval(&_5$$4, interval, &key, PH_NOISY_CC);
 				if (ZEPHIR_GT_LONG(&_5$$4, 1)) {
 					zephir_read_static_property_ce(&_6$$5, chronos_chronos_ce, SL("plural"), PH_NOISY_CC | PH_READONLY);
-					zephir_is_iterable(&_6$$5, 0, "chronos/Chronos.zep", 958);
+					zephir_is_iterable(&_6$$5, 0, "chronos/Chronos.zep", 953);
 					if (Z_TYPE_P(&_6$$5) == IS_ARRAY) {
 						ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_6$$5), _9$$5, _10$$5, _7$$5)
 						{
@@ -3889,7 +3860,7 @@ PHP_METHOD(Chronos_Chronos, getReadableInterval)
 				zephir_read_property_zval(&_16$$4, interval, &key, PH_NOISY_CC);
 				ZEPHIR_INIT_NVAR(&_17$$4);
 				ZEPHIR_CONCAT_VV(&_17$$4, &_16$$4, &result);
-				zephir_array_append(&readable, &_17$$4, PH_SEPARATE, "chronos/Chronos.zep", 960);
+				zephir_array_append(&readable, &_17$$4, PH_SEPARATE, "chronos/Chronos.zep", 955);
 				if (zephir_fast_count_int(&readable) > 1) {
 					break;
 				}
@@ -3911,12 +3882,12 @@ PHP_METHOD(Chronos_Chronos, getReadableInterval)
 				ZEPHIR_OBS_NVAR(&word);
 				if (zephir_fetch_property_zval(&word, interval, &key, PH_SILENT_CC)) {
 					ZEPHIR_OBS_NVAR(&result);
-					zephir_array_fetch(&result, &translation, &unit, PH_NOISY, "chronos/Chronos.zep", 948);
+					zephir_array_fetch(&result, &translation, &unit, PH_NOISY, "chronos/Chronos.zep", 943);
 					ZEPHIR_OBS_NVAR(&_18$$12);
 					zephir_read_property_zval(&_18$$12, interval, &key, PH_NOISY_CC);
 					if (ZEPHIR_GT_LONG(&_18$$12, 1)) {
 						zephir_read_static_property_ce(&_19$$13, chronos_chronos_ce, SL("plural"), PH_NOISY_CC | PH_READONLY);
-						zephir_is_iterable(&_19$$13, 0, "chronos/Chronos.zep", 958);
+						zephir_is_iterable(&_19$$13, 0, "chronos/Chronos.zep", 953);
 						if (Z_TYPE_P(&_19$$13) == IS_ARRAY) {
 							ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_19$$13), _22$$13, _23$$13, _20$$13)
 							{
@@ -3969,7 +3940,7 @@ PHP_METHOD(Chronos_Chronos, getReadableInterval)
 					zephir_read_property_zval(&_28$$12, interval, &key, PH_NOISY_CC);
 					ZEPHIR_INIT_NVAR(&_29$$12);
 					ZEPHIR_CONCAT_VV(&_29$$12, &_28$$12, &result);
-					zephir_array_append(&readable, &_29$$12, PH_SEPARATE, "chronos/Chronos.zep", 960);
+					zephir_array_append(&readable, &_29$$12, PH_SEPARATE, "chronos/Chronos.zep", 955);
 					if (zephir_fast_count_int(&readable) > 1) {
 						break;
 					}
