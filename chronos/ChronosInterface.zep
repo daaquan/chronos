@@ -171,7 +171,7 @@ interface ChronosInterface
 
     public function getSecond();
 
-    public function getMicrosecond();
+    public function getMicrosecond()-> int;
 
     public function getDayOfWeek();
 
@@ -320,8 +320,4 @@ interface ChronosInterface
     public function lte(dateTime) -> bool;
 
     public function __toString() -> string;
-
-    public function diffForHumans(<ChronosInterface> other, string language = "en") -> string;
-
-    public function freeze(<\DateTimeInterface> dateTime);
 }

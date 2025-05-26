@@ -14,7 +14,7 @@
 #define PHP_CHRONOS_VERSION     "0.0.1"
 #define PHP_CHRONOS_EXTNAME     "chronos"
 #define PHP_CHRONOS_AUTHOR      "Phalcon Team"
-#define PHP_CHRONOS_ZEPVERSION  "0.17.0-9f99da6"
+#define PHP_CHRONOS_ZEPVERSION  "0.19.0-$Id$"
 #define PHP_CHRONOS_DESCRIPTION ""
 
 

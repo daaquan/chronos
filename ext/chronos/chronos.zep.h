@@ -5,9 +5,6 @@ ZEPHIR_INIT_CLASS(Chronos_Chronos);
 
 PHP_METHOD(Chronos_Chronos, __construct);
 PHP_METHOD(Chronos_Chronos, setTimeZone);
-PHP_METHOD(Chronos_Chronos, parse);
-PHP_METHOD(Chronos_Chronos, now);
-PHP_METHOD(Chronos_Chronos, copy);
 PHP_METHOD(Chronos_Chronos, format);
 PHP_METHOD(Chronos_Chronos, locale);
 PHP_METHOD(Chronos_Chronos, toDateTime);
@@ -159,6 +156,14 @@ PHP_METHOD(Chronos_Chronos, gte);
 PHP_METHOD(Chronos_Chronos, lt);
 PHP_METHOD(Chronos_Chronos, lte);
 PHP_METHOD(Chronos_Chronos, __toString);
+PHP_METHOD(Chronos_Chronos, parse);
+PHP_METHOD(Chronos_Chronos, now);
+PHP_METHOD(Chronos_Chronos, copy);
+PHP_METHOD(Chronos_Chronos, diffForHumans);
+PHP_METHOD(Chronos_Chronos, getTranslations);
+PHP_METHOD(Chronos_Chronos, getTranslation);
+PHP_METHOD(Chronos_Chronos, getReadableInterval);
+void zephir_init_static_properties_Chronos_Chronos();
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos___construct, 0, 0, 0)
 	ZEND_ARG_TYPE_INFO(0, datetime, IS_STRING, 0)
@@ -167,18 +172,6 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_chronos_chronos_settimezone, 0, 1, DateTime, 0)
 	ZEND_ARG_INFO(0, timezone)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_parse, 0, 0, 0)
-	ZEND_ARG_INFO(0, time)
-	ZEND_ARG_INFO(0, timezone)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_now, 0, 0, 0)
-	ZEND_ARG_INFO(0, timezone)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_copy, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_format, 0, 1, IS_STRING, 0)
@@ -413,7 +406,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_getsecond, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_getmicrosecond, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getmicrosecond, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_getdayofweek, 0, 0, 0)
@@ -694,170 +687,75 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos___tostring, 0, 0, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_parse, 0, 0, 0)
+	ZEND_ARG_INFO(0, time)
+	ZEND_ARG_INFO(0, timezone)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_now, 0, 0, 0)
+	ZEND_ARG_INFO(0, timezone)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_copy, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_diffforhumans, 0, 1, IS_STRING, 0)
+	ZEND_ARG_OBJ_INFO(0, other, Chronos\\ChronosInterface, 0)
+	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gettranslations, 0, 0, IS_ARRAY, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gettranslation, 0, 1, IS_ARRAY, 0)
+	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getreadableinterval, 0, 2, IS_ARRAY, 0)
+	ZEND_ARG_OBJ_INFO(0, interval, DateInterval, 0)
+	ZEND_ARG_ARRAY_INFO(0, translation, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_zephir_init_static_properties_chronos_chronos, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, __construct, arginfo_chronos_chronos___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Chronos_Chronos, setTimeZone, arginfo_chronos_chronos_settimezone, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, parse, arginfo_chronos_chronos_parse, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(Chronos_Chronos, now, arginfo_chronos_chronos_now, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, copy, arginfo_chronos_chronos_copy, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, copy, NULL, ZEND_ACC_PUBLIC)
-#endif
 	PHP_ME(Chronos_Chronos, format, arginfo_chronos_chronos_format, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, locale, arginfo_chronos_chronos_locale, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, toDateTime, arginfo_chronos_chronos_todatetime, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, toDateTimeImmutable, arginfo_chronos_chronos_todatetimeimmutable, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDateTimeString, arginfo_chronos_chronos_todatetimestring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDateTimeString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDateString, arginfo_chronos_chronos_todatestring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDateString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDateWeekString, arginfo_chronos_chronos_todateweekstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDateWeekString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toTimeString, arginfo_chronos_chronos_totimestring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toTimeString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDayOfWeekString, arginfo_chronos_chronos_todayofweekstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDayOfWeekString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDayOfWeekShortString, arginfo_chronos_chronos_todayofweekshortstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDayOfWeekShortString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toDayOfYearString, arginfo_chronos_chronos_todayofyearstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toDayOfYearString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toWeekOfYearString, arginfo_chronos_chronos_toweekofyearstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toWeekOfYearString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toMonthString, arginfo_chronos_chronos_tomonthstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toMonthString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toMonthShortString, arginfo_chronos_chronos_tomonthshortstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toMonthShortString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toYearString, arginfo_chronos_chronos_toyearstring, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toYearString, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, toIso8601String, arginfo_chronos_chronos_toiso8601string, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, toIso8601String, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, today, arginfo_chronos_chronos_today, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, today, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, tomorrow, arginfo_chronos_chronos_tomorrow, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, tomorrow, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, yesterday, arginfo_chronos_chronos_yesterday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, yesterday, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, thisWeek, arginfo_chronos_chronos_thisweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, thisWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, nextWeek, arginfo_chronos_chronos_nextweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, nextWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, lastWeek, arginfo_chronos_chronos_lastweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, lastWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, thisMonth, arginfo_chronos_chronos_thismonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, thisMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, nextMonth, arginfo_chronos_chronos_nextmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, nextMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, lastMonth, arginfo_chronos_chronos_lastmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, lastMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, thisYear, arginfo_chronos_chronos_thisyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, thisYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, nextYear, arginfo_chronos_chronos_nextyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, nextYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, lastYear, arginfo_chronos_chronos_lastyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, lastYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, startOfDay, arginfo_chronos_chronos_startofday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, startOfDay, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, startOfMonth, arginfo_chronos_chronos_startofmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, startOfMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, startOfYear, arginfo_chronos_chronos_startofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, startOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, endOfDay, arginfo_chronos_chronos_endofday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, endOfDay, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, endOfMonth, arginfo_chronos_chronos_endofmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, endOfMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, endOfYear, arginfo_chronos_chronos_endofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, endOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Chronos_Chronos, toDateTimeString, arginfo_chronos_chronos_todatetimestring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toDateString, arginfo_chronos_chronos_todatestring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toDateWeekString, arginfo_chronos_chronos_todateweekstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toTimeString, arginfo_chronos_chronos_totimestring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toDayOfWeekString, arginfo_chronos_chronos_todayofweekstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toDayOfWeekShortString, arginfo_chronos_chronos_todayofweekshortstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toDayOfYearString, arginfo_chronos_chronos_todayofyearstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toWeekOfYearString, arginfo_chronos_chronos_toweekofyearstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toMonthString, arginfo_chronos_chronos_tomonthstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toMonthShortString, arginfo_chronos_chronos_tomonthshortstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toYearString, arginfo_chronos_chronos_toyearstring, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, toIso8601String, arginfo_chronos_chronos_toiso8601string, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, today, arginfo_chronos_chronos_today, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, tomorrow, arginfo_chronos_chronos_tomorrow, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, yesterday, arginfo_chronos_chronos_yesterday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, thisWeek, arginfo_chronos_chronos_thisweek, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, nextWeek, arginfo_chronos_chronos_nextweek, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, lastWeek, arginfo_chronos_chronos_lastweek, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, thisMonth, arginfo_chronos_chronos_thismonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, nextMonth, arginfo_chronos_chronos_nextmonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, lastMonth, arginfo_chronos_chronos_lastmonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, thisYear, arginfo_chronos_chronos_thisyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, nextYear, arginfo_chronos_chronos_nextyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, lastYear, arginfo_chronos_chronos_lastyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, startOfDay, arginfo_chronos_chronos_startofday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, startOfMonth, arginfo_chronos_chronos_startofmonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, startOfYear, arginfo_chronos_chronos_startofyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, endOfDay, arginfo_chronos_chronos_endofday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, endOfMonth, arginfo_chronos_chronos_endofmonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, endOfYear, arginfo_chronos_chronos_endofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, modify, arginfo_chronos_chronos_modify, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, isToday, arginfo_chronos_chronos_istoday, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, isTomorrow, arginfo_chronos_chronos_istomorrow, ZEND_ACC_PUBLIC)
@@ -894,61 +792,17 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, isLastDayOfMonth, arginfo_chronos_chronos_islastdayofmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, isLastWeekOfMonth, arginfo_chronos_chronos_islastweekofmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, isLastWeekOfYear, arginfo_chronos_chronos_islastweekofyear, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getYear, arginfo_chronos_chronos_getyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getMonth, arginfo_chronos_chronos_getmonth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getMonth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getDay, arginfo_chronos_chronos_getday, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getDay, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getHour, arginfo_chronos_chronos_gethour, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getHour, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getMinute, arginfo_chronos_chronos_getminute, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getMinute, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getSecond, arginfo_chronos_chronos_getsecond, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getSecond, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
+PHP_ME(Chronos_Chronos, getYear, arginfo_chronos_chronos_getyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getMonth, arginfo_chronos_chronos_getmonth, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getDay, arginfo_chronos_chronos_getday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getHour, arginfo_chronos_chronos_gethour, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getMinute, arginfo_chronos_chronos_getminute, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getSecond, arginfo_chronos_chronos_getsecond, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getMicrosecond, arginfo_chronos_chronos_getmicrosecond, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getMicrosecond, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getDayOfWeek, arginfo_chronos_chronos_getdayofweek, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getDayOfWeek, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getDayOfYear, arginfo_chronos_chronos_getdayofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getDayOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getWeekOfYear, arginfo_chronos_chronos_getweekofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getWeekOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Chronos_Chronos, getMonthOfYear, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Chronos_Chronos, getDayOfWeek, arginfo_chronos_chronos_getdayofweek, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getDayOfYear, arginfo_chronos_chronos_getdayofyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getWeekOfYear, arginfo_chronos_chronos_getweekofyear, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getAge, arginfo_chronos_chronos_getage, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getDaysInMonth, arginfo_chronos_chronos_getdaysinmonth, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, getDaysInYear, arginfo_chronos_chronos_getdaysinyear, ZEND_ACC_PUBLIC)
@@ -1019,5 +873,12 @@ ZEPHIR_INIT_FUNCS(chronos_chronos_method_entry) {
 	PHP_ME(Chronos_Chronos, lt, arginfo_chronos_chronos_lt, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, lte, arginfo_chronos_chronos_lte, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, __toString, arginfo_chronos_chronos___tostring, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, parse, arginfo_chronos_chronos_parse, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Chronos_Chronos, now, arginfo_chronos_chronos_now, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+PHP_ME(Chronos_Chronos, copy, arginfo_chronos_chronos_copy, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, diffForHumans, arginfo_chronos_chronos_diffforhumans, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, getTranslations, arginfo_chronos_chronos_gettranslations, ZEND_ACC_PRIVATE)
+	PHP_ME(Chronos_Chronos, getTranslation, arginfo_chronos_chronos_gettranslation, ZEND_ACC_PRIVATE)
+	PHP_ME(Chronos_Chronos, getReadableInterval, arginfo_chronos_chronos_getreadableinterval, ZEND_ACC_PRIVATE)
 	PHP_FE_END
 };

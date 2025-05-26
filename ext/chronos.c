@@ -90,6 +90,7 @@ static PHP_RINIT_FUNCTION(chronos)
 	php_zephir_init_globals(chronos_globals_ptr);
 	zephir_initialize_memory(chronos_globals_ptr);
 
+		zephir_init_static_properties_Chronos_Chronos();
 	
 	return SUCCESS;
 }

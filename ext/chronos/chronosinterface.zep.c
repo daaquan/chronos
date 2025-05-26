@@ -187,3 +187,5 @@ ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, gte);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, lt);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, lte);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, __toString);
+ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffForHumans);
+ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, freeze);

@@ -50,26 +50,6 @@ class Chronos extends DateTime implements ChronosInterface
         return this;
     }
 
-    public static function parse(var time = "now", var timezone = null)
-    {
-        var e;
-        try {
-            return new static(time, timezone);
-        } catch \Exception, e {
-            throw new \Chronos\Exceptions\InvalidFormatException(e->getMessage());
-        }
-    }
-
-    public static function now(var timezone = null)
-    {
-        return new static("now", timezone);
-    }
-
-    public function copy()
-    {
-        return new static(this->format("Y-m-d H:i:s.u"), this->getTimezone());
-    }
-
     public function format(string format, string locale = null) -> string
     {
         if (locale !== null) {
@@ -457,7 +437,7 @@ class Chronos extends DateTime implements ChronosInterface
         return this->format("s");
     }
 
-    public function getMicrosecond()
+    public function getMicrosecond()-> int
     {
         return this->format("u");
     }
@@ -883,22 +863,27 @@ class Chronos extends DateTime implements ChronosInterface
         return this->toDateTimeString();
     }
 
-    public static function parse($time = 'now', $timezone = null): static
+    public static function parse(var time = "now", var timezone = null)
     {
-        return new static($time, $timezone);
+        var e;
+        try {
+            return new static(time, timezone);
+        } catch \Exception, e {
+            throw new \Chronos\Exceptions\InvalidFormatException(e->getMessage());
+        }
     }
 
-    public static function now($timezone = null): static
+    public static function now(var timezone = null)
     {
-        return new static('now');
+        return new static("now", timezone);
     }
 
-    public function copy(): static
+    public function copy()
     {
-        return new static($this->format('Y-m-d H:i:s.u'), $this->getTimezone());
+        return new static(this->format("Y-m-d H:i:s.u"), this->getTimezone());
     }
 
-    public function diffForHumans(ChronosInterface other, string language = "en") -> string
+    public function diffForHumans(<ChronosInterface> other, string language = "en") -> string
     {
         var interval, translation, suffix, readableInterval;
 
@@ -911,31 +896,31 @@ class Chronos extends DateTime implements ChronosInterface
         }
 
         let readableInterval = this->getReadableInterval(interval, translation);
-        return implode(" ", readableInterval) . suffix;
+        return implode(readableInterval, " ") . suffix;
     }
 
     private function getTranslations() -> array
     {
         return [
-            "en" => [
-                "suffix_past" => " ago",
-                "suffix_future" => " from now",
-                "year" => " year",
-                "month" => " month",
-                "day" => " day",
-                "hour" => " hour",
-                "minute" => " minute",
-                "second" => " second"
+            "en": [
+                "suffix_past": " ago",
+                "suffix_future": " from now",
+                "year": " year",
+                "month": " month",
+                "day": " day",
+                "hour": " hour",
+                "minute": " minute",
+                "second": " second"
             ],
-            "ja" => [
-                "suffix_past" => "前",
-                "suffix_future" => "後",
-                "year" => "年",
-                "month" => "ヶ月",
-                "day" => "日",
-                "hour" => "時間",
-                "minute" => "分",
-                "second" => "秒"
+            "ja": [
+                "suffix_past": "前",
+                "suffix_future": "後",
+                "year": "年",
+                "month": "ヶ月",
+                "day": "日",
+                "hour": "時間",
+                "minute": "分",
+                "second": "秒"
             ]
         ];
     }
@@ -953,17 +938,18 @@ class Chronos extends DateTime implements ChronosInterface
         return translations[language];
     }
 
-    private function getReadableInterval(DateInterval interval, array translation) -> array
+    private function getReadableInterval(<\DateInterval> interval, array translation) -> array
     {
         var readable, key, unit, result, word;
 
         let readable = [];
-        for key, unit in ["y" : "year", "m" : "month", "d" : "day", "h" : "hour", "i" : "minute", "s" : "second"] {
+        for key, unit in ["y": "year", "m": "month", "d": "day", "h": "hour", "i": "minute", "s": "second"] {
             if fetch word, interval->{key} {
                 let result = translation[unit];
 
                 if interval->{key} > 1 {
-                    for rule, replacement in static::plural {
+                    var rule, replacement;
+                    for rule, replacement in self::plural {
                         if preg_match(rule, word) {
                             let result = preg_replace(rule, replacement, word);
                             break;
@@ -979,17 +965,5 @@ class Chronos extends DateTime implements ChronosInterface
         }
 
         return readable;
-    }
-
-    public function freeze(\DateTimeInterface dateTime)
-    {
-        var formattedDate;
-
-        if !class_exists("\Spatie\PestPluginTestTime\TestTime") {
-            throw new \RuntimeException("Please install spatie/pest-plugin-test-time");
-        }
-
-        let formattedDate = dateTime->format("Y-m-d H:i:s");
-        return (new \Spatie\PestPluginTestTime\TestTime())->freeze(formattedDate);
     }
 }
