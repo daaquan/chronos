@@ -307,8 +307,6 @@ interface ChronosInterface
 
     public function diffInMicroseconds(other, bool abs = true);
 
-    public function diffForHumans(<ChronosInterface> other, string language = "en") -> string;
-
     public function between(start, end, bool equal = true) -> bool;
 
     public function eq(dateTime) -> bool;

@@ -501,11 +501,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_diffinmicroseconds, 0, 0
 	ZEND_ARG_TYPE_INFO(0, abs, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_diffforhumans, 0, 1, IS_STRING, 0)
-	ZEND_ARG_OBJ_INFO(0, other, Chronos\\ChronosInterface, 0)
-	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_between, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, start)
 	ZEND_ARG_INFO(0, end)
@@ -720,7 +715,6 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInWeeks, arginfo_chronos_chronosinterface_diffinweeks)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInDays, arginfo_chronos_chronosinterface_diffindays)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInMicroseconds, arginfo_chronos_chronosinterface_diffinmicroseconds)
-	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffForHumans, arginfo_chronos_chronosinterface_diffforhumans)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, between, arginfo_chronos_chronosinterface_between)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, eq, arginfo_chronos_chronosinterface_eq)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, ne, arginfo_chronos_chronosinterface_ne)

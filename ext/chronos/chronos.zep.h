@@ -168,10 +168,6 @@ PHP_METHOD(Chronos_Chronos, __toString);
 PHP_METHOD(Chronos_Chronos, parse);
 PHP_METHOD(Chronos_Chronos, now);
 PHP_METHOD(Chronos_Chronos, copy);
-PHP_METHOD(Chronos_Chronos, diffForHumans);
-PHP_METHOD(Chronos_Chronos, getTranslations);
-PHP_METHOD(Chronos_Chronos, getTranslation);
-PHP_METHOD(Chronos_Chronos, getReadableInterval);
 void zephir_init_static_properties_Chronos_Chronos();
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos___construct, 0, 0, 0)
@@ -742,23 +738,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_copy, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_diffforhumans, 0, 1, IS_STRING, 0)
-	ZEND_ARG_OBJ_INFO(0, other, Chronos\\ChronosInterface, 0)
-	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gettranslations, 0, 0, IS_ARRAY, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_gettranslation, 0, 1, IS_ARRAY, 0)
-	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_getreadableinterval, 0, 2, IS_ARRAY, 0)
-	ZEND_ARG_OBJ_INFO(0, interval, DateInterval, 0)
-	ZEND_ARG_ARRAY_INFO(0, translation, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_zephir_init_static_properties_chronos_chronos, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
@@ -928,9 +907,5 @@ PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, 
 	PHP_ME(Chronos_Chronos, parse, arginfo_chronos_chronos_parse, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Chronos_Chronos, now, arginfo_chronos_chronos_now, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 PHP_ME(Chronos_Chronos, copy, arginfo_chronos_chronos_copy, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, diffForHumans, arginfo_chronos_chronos_diffforhumans, ZEND_ACC_PUBLIC)
-	PHP_ME(Chronos_Chronos, getTranslations, arginfo_chronos_chronos_gettranslations, ZEND_ACC_PRIVATE)
-	PHP_ME(Chronos_Chronos, getTranslation, arginfo_chronos_chronos_gettranslation, ZEND_ACC_PRIVATE)
-	PHP_ME(Chronos_Chronos, getReadableInterval, arginfo_chronos_chronos_getreadableinterval, ZEND_ACC_PRIVATE)
 	PHP_FE_END
 };

@@ -1190,17 +1190,6 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 指定された日時との差を人間が読める形で返す
-     *
-     * @param ChronosInterface $other
-     * @param string $language
-     * @return string
-     */
-    public function diffForHumans(ChronosInterface $other, string $language = 'en'): string
-    {
-    }
-
-    /**
      * インスタンスが他の2つの間にあるかどうかを判定します
      *
      * 3つ目の引数では、境界を含むかどうかを指定できます（デフォルトではtrue）

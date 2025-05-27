@@ -180,7 +180,6 @@ ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffInYears);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffInWeeks);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffInDays);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffInMicroseconds);
-ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, diffForHumans);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, between);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, eq);
 ZEPHIR_DOC_METHOD(Chronos_ChronosInterface, ne);
