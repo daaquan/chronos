@@ -2,6 +2,8 @@
 
 namespace Chronos\Chronos;
 
+use Chronos\Chronos;
+
 /**
  * Carbonクラスのような日付と時間の操作を行う
  */
@@ -83,11 +85,15 @@ interface ChronosInterface
 
     public function startOfDay();
 
+    public function startOfWeek();
+
     public function startOfMonth();
 
     public function startOfYear();
 
     public function endOfDay();
+
+    public function endOfWeek();
 
     public function endOfMonth();
 
@@ -307,6 +313,8 @@ interface ChronosInterface
 
     public function diffInMicroseconds($other, bool $abs = true);
 
+    public function diffForHumans(ChronosInterface $other, string $language = 'en'): string;
+
     public function between($start, $end, bool $equal = true): bool;
 
     public function eq($dateTime): bool;
@@ -320,6 +328,22 @@ interface ChronosInterface
     public function lt($dateTime): bool;
 
     public function lte($dateTime): bool;
+
+    public function isSameDay(\DateTimeInterface $dateTime): bool;
+
+    public function isSameMonth(\DateTimeInterface $dateTime): bool;
+
+    public function isSameQuarter(\DateTimeInterface $dateTime): bool;
+
+    public function isSameYear(\DateTimeInterface $dateTime): bool;
+
+    public function isSameWeek(\DateTimeInterface $dateTime): bool;
+
+    public function isSameHour(\DateTimeInterface $dateTime): bool;
+
+    public function isSameMinute(\DateTimeInterface $dateTime): bool;
+
+    public function isSameSecond(\DateTimeInterface $dateTime): bool;
 
     public function __toString(): string;
 }

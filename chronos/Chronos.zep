@@ -201,6 +201,11 @@ class Chronos extends DateTime implements ChronosInterface
         return this;
     }
 
+    public function startOfWeek()
+    {
+        return this->modify("monday this week");
+    }
+
     public function startOfMonth()
     {
         return this->modify("first day of this month");
@@ -213,8 +218,13 @@ class Chronos extends DateTime implements ChronosInterface
 
     public function endOfDay()
     {
-        this->setTime(23, 59, 59);
+        this->setTime(23, 59, 59, 999999);
         return this;
+    }
+
+    public function endOfWeek()
+    {
+        return this->modify("sunday this week");
     }
 
     public function endOfMonth()
@@ -851,6 +861,50 @@ class Chronos extends DateTime implements ChronosInterface
     public function lte(var dateTime) -> bool
     {
         return this <= dateTime;
+    }
+
+    public function isSameDay(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y-m-d") === targetObject->format("Y-m-d");
+    }
+
+    public function isSameMonth(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y-m") === targetObject->format("Y-m");
+    }
+
+    public function isSameQuarter(<\DateTimeInterface> targetObject) -> bool
+    {
+        var thisQuarter, targetQuarter;
+        let thisQuarter = (int) ceil((int) this->format("n") / 3);
+        let targetQuarter = (int) ceil((int) targetObject->format("n") / 3);
+        return (this->format("Y") === targetObject->format("Y")) && (thisQuarter === targetQuarter);
+    }
+
+    public function isSameYear(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y") === targetObject->format("Y");
+    }
+
+    public function isSameWeek(<\DateTimeInterface> targetObject) -> bool
+    {
+        // ISO-8601 週番号を使用 (年-週番号)
+        return this->format("o-W") === targetObject->format("o-W");
+    }
+
+    public function isSameHour(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y-m-d H") === targetObject->format("Y-m-d H");
+    }
+
+    public function isSameMinute(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y-m-d H:i") === targetObject->format("Y-m-d H:i");
+    }
+
+    public function isSameSecond(<\DateTimeInterface> targetObject) -> bool
+    {
+        return this->format("Y-m-d H:i:s") === targetObject->format("Y-m-d H:i:s");
     }
 
     public function __toString() -> string

@@ -109,6 +109,9 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_startofday, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_startofweek, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_startofmonth, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
@@ -116,6 +119,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_startofyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_endofday, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_endofweek, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_endofmonth, 0, 0, 0)
@@ -495,6 +501,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronosinterface_diffinmicroseconds, 0, 0
 	ZEND_ARG_TYPE_INFO(0, abs, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_diffforhumans, 0, 1, IS_STRING, 0)
+	ZEND_ARG_OBJ_INFO(0, other, Chronos\\ChronosInterface, 0)
+	ZEND_ARG_TYPE_INFO(0, language, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_between, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, start)
 	ZEND_ARG_INFO(0, end)
@@ -523,6 +534,38 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_lte, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, dateTime)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issameday, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issamemonth, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issamequarter, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issameyear, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issameweek, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issamehour, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issameminute, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface_issamesecond, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronosinterface___tostring, 0, 0, IS_STRING, 0)
@@ -562,9 +605,11 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, nextYear, arginfo_chronos_chronosinterface_nextyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, lastYear, arginfo_chronos_chronosinterface_lastyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, startOfDay, arginfo_chronos_chronosinterface_startofday)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, startOfWeek, arginfo_chronos_chronosinterface_startofweek)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, startOfMonth, arginfo_chronos_chronosinterface_startofmonth)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, startOfYear, arginfo_chronos_chronosinterface_startofyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, endOfDay, arginfo_chronos_chronosinterface_endofday)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, endOfWeek, arginfo_chronos_chronosinterface_endofweek)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, endOfMonth, arginfo_chronos_chronosinterface_endofmonth)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, endOfYear, arginfo_chronos_chronosinterface_endofyear)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, modify, arginfo_chronos_chronosinterface_modify)
@@ -675,6 +720,7 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInWeeks, arginfo_chronos_chronosinterface_diffinweeks)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInDays, arginfo_chronos_chronosinterface_diffindays)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffInMicroseconds, arginfo_chronos_chronosinterface_diffinmicroseconds)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, diffForHumans, arginfo_chronos_chronosinterface_diffforhumans)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, between, arginfo_chronos_chronosinterface_between)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, eq, arginfo_chronos_chronosinterface_eq)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, ne, arginfo_chronos_chronosinterface_ne)
@@ -682,6 +728,14 @@ ZEPHIR_INIT_FUNCS(chronos_chronosinterface_method_entry) {
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, gte, arginfo_chronos_chronosinterface_gte)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, lt, arginfo_chronos_chronosinterface_lt)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, lte, arginfo_chronos_chronosinterface_lte)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameDay, arginfo_chronos_chronosinterface_issameday)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameMonth, arginfo_chronos_chronosinterface_issamemonth)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameQuarter, arginfo_chronos_chronosinterface_issamequarter)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameYear, arginfo_chronos_chronosinterface_issameyear)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameWeek, arginfo_chronos_chronosinterface_issameweek)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameHour, arginfo_chronos_chronosinterface_issamehour)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameMinute, arginfo_chronos_chronosinterface_issameminute)
+	PHP_ABSTRACT_ME(Chronos_ChronosInterface, isSameSecond, arginfo_chronos_chronosinterface_issamesecond)
 	PHP_ABSTRACT_ME(Chronos_ChronosInterface, __toString, arginfo_chronos_chronosinterface___tostring)
 	PHP_FE_END
 };

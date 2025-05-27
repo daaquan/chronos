@@ -10,7 +10,7 @@ use Chronos\Chronos\ChronosInterface;
 class Chronos extends \DateTime implements ChronosInterface
 {
     /**
-     * @param  \DateTimeZone|string|null  $timezone
+     * @param \DateTimeZone|string|null $timezone
      */
     public function __construct(string $datetime = 'now', $timezone = null)
     {
@@ -19,7 +19,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * タイムゾーンを設定する
      *
-     * @param  mixed  $timezone 新しいタイムゾーン
+     * @param mixed $timezone 新しいタイムゾーン
      */
     public function setTimeZone($timezone): static
     {
@@ -33,8 +33,8 @@ class Chronos extends \DateTime implements ChronosInterface
      * デフォルトのタイムゾーンが使用されます`$time`パラメータが提供されていない場合は、
      * 'now'がデフォルト値となり、現在の日付と時間のインスタンスが生成されます
      *
-     * @param  string|null  $time 日付と時間を表す文字列
-     * @param  \DateTimeZone|string|null  $timezone 時間文字列のタイムゾーン
+     * @param string|null $time 日付と時間を表す文字列
+     * @param \DateTimeZone|string|null $timezone 時間文字列のタイムゾーン
      * nullの場合は、デフォルトのタイムゾーンが使用されます
      * @return static 新しいChronosインスタンスを返します
      */
@@ -45,7 +45,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日付と時間を表すChronosインスタンスを返す
      *
-     * @param  \DateTimeZone|string  $timezone
+     * @param \DateTimeZone|string $timezone
      */
     public static function now($timezone = null): static
     {
@@ -68,7 +68,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * ロケールを設定する
      *
-     * @param  mixed  $locale
+     * @param mixed $locale
      */
     public function locale($locale)
     {
@@ -314,6 +314,15 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
+     * 現在の週の開始を表すインスタンスを返す
+     *
+     * @return static
+     */
+    public function startOfWeek()
+    {
+    }
+
+    /**
      * 現在の月の開始を表すインスタンスを返す
      *
      * @return static
@@ -337,6 +346,15 @@ class Chronos extends \DateTime implements ChronosInterface
      * @return static
      */
     public function endOfDay()
+    {
+    }
+
+    /**
+     * 現在の週の終了を表すインスタンスを返す
+     *
+     * @return static
+     */
+    public function endOfWeek()
     {
     }
 
@@ -856,7 +874,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * @param  \DateTimeZone|string|null  $timezone
+     * @param \DateTimeZone|string|null $timezone
      */
     public function setDateTime(\DateTime $dateTime)
     {
@@ -1086,8 +1104,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を秒単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInSeconds($other, bool $abs = true)
@@ -1097,8 +1115,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を分単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInMinutes($other, bool $abs = true)
@@ -1108,8 +1126,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を時間単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInHours($other, bool $abs = true)
@@ -1119,8 +1137,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を日単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInMonths($other, bool $abs = true)
@@ -1130,8 +1148,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を年単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInYears($other, bool $abs = true)
@@ -1141,8 +1159,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を週単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInWeeks($other, bool $abs = true)
@@ -1152,8 +1170,8 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差を日単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差の秒数
      */
     public function diffInDays($other, bool $abs = true)
@@ -1163,11 +1181,22 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 指定された日時との差をマイクロ秒単位で返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $other 比較対象の日時
-     * @param  bool  $abs 差の絶対値を取るかどうか（デフォルトではtrue）
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
+     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
      * @return int 差のマイクロ秒数
      */
     public function diffInMicroseconds($other, bool $abs = true)
+    {
+    }
+
+    /**
+     * 指定された日時との差を人間が読める形で返す
+     *
+     * @param ChronosInterface $other
+     * @param string $language
+     * @return string
+     */
+    public function diffForHumans(ChronosInterface $other, string $language = 'en'): string
     {
     }
 
@@ -1178,9 +1207,9 @@ class Chronos extends \DateTime implements ChronosInterface
      * ただし、境界を含む/含まないことがアプリケーションで異なる結果を生む可能性がある場合、
      * 明示的なメソッド ->betweenIncluded() や ->betweenExcluded() の使用を推奨します
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $date1
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $date2
-     * @param  bool  $equal Indicates if an equal to comparison should be done
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $date1
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $date2
+     * @param bool $equal Indicates if an equal to comparison should be done
      *
      * @example
      * ```
@@ -1197,7 +1226,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時に対して比較演算子を適用し、真偽値を返す
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 比較結果等しい場合はtrue、そうでない場合はfalse
      *
      * @example
@@ -1214,7 +1243,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時が引数の日時と異なるかどうかを判定する
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 等しくない場合はtrue、等しい場合はfalse
      *
      * @example
@@ -1231,7 +1260,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時が引数の日時よりも大きいかどうかを判定する
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 現在の日時が引数の日時よりも大きい場合はtrue、そうでない場合はfalse
      *
      * @example
@@ -1248,7 +1277,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時が引数の日時よりも大きいかどうかを判定する
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 現在の日時が引数の日時よりも大きい場合はtrue、そうでない場合はfalse
      *
      * @example
@@ -1265,7 +1294,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時が引数の日時よりも小さいかどうかを判定する
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 現在の日時が引数の日時よりも小さい場合はtrue、そうでない場合はfalse
      *
      * @example
@@ -1282,7 +1311,7 @@ class Chronos extends \DateTime implements ChronosInterface
     /**
      * 現在の日時が引数の日時よりも小さいかどうかを判定する
      *
-     * @param  \Chronos\Chronos|\DateTimeInterface|mixed  $dateTime 比較する日時
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
      * @return bool 現在の日時が引数の日時よりも小さい場合はtrue、そうでない場合はfalse
      *
      * @example
@@ -1293,6 +1322,93 @@ class Chronos extends \DateTime implements ChronosInterface
      *  ```
      */
     public function lte($dateTime): bool
+    {
+    }
+
+    /**
+     * Checks if the given date is the same day as the current instance
+     *
+     * @param \DateTimeInterface $dateTime The date to compare
+     * @return bool True if the dates are on the same day, false otherwise
+     */
+    public function isSameDay(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Check if the given date is the same hour as the current instance
+     *
+     * @param \DateTimeInterface $dateTime The date to compare
+     * @return bool True if the dates are on the same hour, false otherwise
+     */
+    public function isSameHour(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Check if the given date is the same minute as the current instance
+     *
+     * @param \DateTimeInterface $dateTime The date to compare
+     * @return bool True if the dates are on the same minute, false otherwise
+     */
+    public function isSameMinute(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Check if two dates are in the same month.
+     *
+     * @param \DateTimeInterface $dateTime
+     * @return bool
+     */
+    public function isSameMonth(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Checks if the given date is in the same quarter as the current instance.
+     *
+     * @param \DateTimeInterface $dateTime The date to compare.
+     * @return bool True if the dates are in the same quarter, false otherwise.
+     */
+    public function isSameQuarter(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Checks if the given date is in the same second as the current instance.
+     *
+     * @param \DateTimeInterface $dateTime The date to compare.
+     * @return bool True if the dates are in the same second, false otherwise.
+     */
+    public function isSameSecond(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Checks if the given date is in the same week as the current instance.
+     *
+     * @param \DateTimeInterface $dateTime The date to compare.
+     * @return bool True if the dates are in the same week, false otherwise.
+     *
+     * @example
+     *  ```
+     *  $date1 = Chronos::parse('2023-05-01');
+     *  $date2 = Chronos::parse('2023-05-03');
+     *  $result = $date1->isSameWeek($date2); // true
+     *  ```
+     */
+    public function isSameWeek(\DateTimeInterface $dateTime): bool
+    {
+    }
+
+    /**
+     * Checks if the current instance is in the same year as the given date.
+     *
+     * @param \DateTimeInterface $dateTime The date to compare
+     * @return bool True if the dates are in the same year, false otherwise
+     */
+    public function isSameYear(\DateTimeInterface $dateTime): bool
     {
     }
 

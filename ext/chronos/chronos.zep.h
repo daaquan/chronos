@@ -34,9 +34,11 @@ PHP_METHOD(Chronos_Chronos, thisYear);
 PHP_METHOD(Chronos_Chronos, nextYear);
 PHP_METHOD(Chronos_Chronos, lastYear);
 PHP_METHOD(Chronos_Chronos, startOfDay);
+PHP_METHOD(Chronos_Chronos, startOfWeek);
 PHP_METHOD(Chronos_Chronos, startOfMonth);
 PHP_METHOD(Chronos_Chronos, startOfYear);
 PHP_METHOD(Chronos_Chronos, endOfDay);
+PHP_METHOD(Chronos_Chronos, endOfWeek);
 PHP_METHOD(Chronos_Chronos, endOfMonth);
 PHP_METHOD(Chronos_Chronos, endOfYear);
 PHP_METHOD(Chronos_Chronos, modify);
@@ -154,6 +156,14 @@ PHP_METHOD(Chronos_Chronos, gt);
 PHP_METHOD(Chronos_Chronos, gte);
 PHP_METHOD(Chronos_Chronos, lt);
 PHP_METHOD(Chronos_Chronos, lte);
+PHP_METHOD(Chronos_Chronos, isSameDay);
+PHP_METHOD(Chronos_Chronos, isSameMonth);
+PHP_METHOD(Chronos_Chronos, isSameQuarter);
+PHP_METHOD(Chronos_Chronos, isSameYear);
+PHP_METHOD(Chronos_Chronos, isSameWeek);
+PHP_METHOD(Chronos_Chronos, isSameHour);
+PHP_METHOD(Chronos_Chronos, isSameMinute);
+PHP_METHOD(Chronos_Chronos, isSameSecond);
 PHP_METHOD(Chronos_Chronos, __toString);
 PHP_METHOD(Chronos_Chronos, parse);
 PHP_METHOD(Chronos_Chronos, now);
@@ -263,6 +273,9 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_startofday, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_startofweek, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_startofmonth, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
@@ -270,6 +283,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_startofyear, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_endofday, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_endofweek, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_chronos_chronos_endofmonth, 0, 0, 0)
@@ -679,6 +695,38 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_lte, 0, 1, _IS_B
 	ZEND_ARG_INFO(0, dateTime)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issameday, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issamemonth, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issamequarter, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issameyear, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issameweek, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issamehour, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issameminute, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos_issamesecond, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_OBJ_INFO(0, targetObject, DateTimeInterface, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_chronos_chronos___tostring, 0, 0, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
@@ -746,9 +794,11 @@ PHP_ME(Chronos_Chronos, thisYear, arginfo_chronos_chronos_thisyear, ZEND_ACC_PUB
 PHP_ME(Chronos_Chronos, nextYear, arginfo_chronos_chronos_nextyear, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, lastYear, arginfo_chronos_chronos_lastyear, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, startOfDay, arginfo_chronos_chronos_startofday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, startOfWeek, arginfo_chronos_chronos_startofweek, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, startOfMonth, arginfo_chronos_chronos_startofmonth, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, startOfYear, arginfo_chronos_chronos_startofyear, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, endOfDay, arginfo_chronos_chronos_endofday, ZEND_ACC_PUBLIC)
+PHP_ME(Chronos_Chronos, endOfWeek, arginfo_chronos_chronos_endofweek, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, endOfMonth, arginfo_chronos_chronos_endofmonth, ZEND_ACC_PUBLIC)
 PHP_ME(Chronos_Chronos, endOfYear, arginfo_chronos_chronos_endofyear, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, modify, arginfo_chronos_chronos_modify, ZEND_ACC_PUBLIC)
@@ -866,6 +916,14 @@ PHP_ME(Chronos_Chronos, getMonthOfYear, arginfo_chronos_chronos_getmonthofyear, 
 	PHP_ME(Chronos_Chronos, gte, arginfo_chronos_chronos_gte, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, lt, arginfo_chronos_chronos_lt, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, lte, arginfo_chronos_chronos_lte, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameDay, arginfo_chronos_chronos_issameday, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameMonth, arginfo_chronos_chronos_issamemonth, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameQuarter, arginfo_chronos_chronos_issamequarter, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameYear, arginfo_chronos_chronos_issameyear, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameWeek, arginfo_chronos_chronos_issameweek, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameHour, arginfo_chronos_chronos_issamehour, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameMinute, arginfo_chronos_chronos_issameminute, ZEND_ACC_PUBLIC)
+	PHP_ME(Chronos_Chronos, isSameSecond, arginfo_chronos_chronos_issamesecond, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, __toString, arginfo_chronos_chronos___tostring, ZEND_ACC_PUBLIC)
 	PHP_ME(Chronos_Chronos, parse, arginfo_chronos_chronos_parse, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Chronos_Chronos, now, arginfo_chronos_chronos_now, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)

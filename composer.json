@@ -5,9 +5,6 @@
     "require": {
         "php": "^8.0"
     },
-    "require-dev": {
-        "pestphp/pest": "^2.24"
-    },
     "autoload-dev": {
         "psr-4": {
             "Chronos\\": "ide-stubs/src/"
@@ -17,5 +14,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8"
     }
 }

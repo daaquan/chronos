@@ -77,11 +77,15 @@ interface ChronosInterface
 
     public function startOfDay();
 
+    public function startOfWeek();
+
     public function startOfMonth();
 
     public function startOfYear();
 
     public function endOfDay();
+
+    public function endOfWeek();
 
     public function endOfMonth();
 
@@ -303,6 +307,8 @@ interface ChronosInterface
 
     public function diffInMicroseconds(other, bool abs = true);
 
+    public function diffForHumans(<ChronosInterface> other, string language = "en") -> string;
+
     public function between(start, end, bool equal = true) -> bool;
 
     public function eq(dateTime) -> bool;
@@ -316,6 +322,22 @@ interface ChronosInterface
     public function lt(dateTime) -> bool;
 
     public function lte(dateTime) -> bool;
+
+    public function isSameDay(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameMonth(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameQuarter(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameYear(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameWeek(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameHour(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameMinute(<\DateTimeInterface> targetObject) -> bool;
+
+    public function isSameSecond(<\DateTimeInterface> targetObject) -> bool;
 
     public function __toString() -> string;
 }

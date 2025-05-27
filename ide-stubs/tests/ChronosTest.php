@@ -60,6 +60,12 @@ it('can get the start of the day', function () {
     expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-01-01 00:00:00');
 });
 
+it('can get the start of the week', function () {
+    $chronos = new Chronos('2023-01-11');
+    $chronos->startOfWeek();
+    expect($chronos->format('Y-m-d'))->toBe('2023-01-09');
+});
+
 it('can get the start of the month', function () {
     $chronos = new Chronos('2023-01-15');
     $chronos->startOfMonth();
@@ -76,6 +82,12 @@ it('can get the end of the day', function () {
     $chronos = new Chronos('2023-05-01');
     $chronos->endOfDay();
     expect($chronos->format('Y-m-d H:i:s'))->toBe('2023-05-01 23:59:59');
+});
+
+it('can get the end of the week', function () {
+    $chronos = new Chronos('2023-01-11');
+    $chronos->endOfWeek();
+    expect($chronos->format('Y-m-d'))->toBe('2023-01-15');
 });
 
 it('can get the end of the month', function () {
@@ -372,4 +384,121 @@ it('can set the timezone', function () {
     $chronos->setTimezone(new DateTimeZone('Asia/Tokyo'));
     expect($chronos->getTimezone()->getName())->toBe('Asia/Tokyo');
     expect($chronos->getOffset())->toBe(3600 * 9); // UTC/GMT +9 hour
+});
+
+// isSameDay のテスト
+it('checks if date is same day correctly', function () {
+    $day1 = new Chronos('2023-05-01 10:00:00');
+    $day2 = new Chronos('2023-05-01 15:30:00');
+    $day3 = new Chronos('2023-05-02 10:00:00');
+
+    expect($day1->isSameDay($day2))->toBeTrue();
+    expect($day1->isSameDay($day3))->toBeFalse();
+});
+
+// isSameMonth のテスト
+it('checks if date is same month correctly', function () {
+    $month1 = new Chronos('2023-05-01');
+    $month2 = new Chronos('2023-05-15');
+    $month3 = new Chronos('2023-06-01');
+
+    expect($month1->isSameMonth($month2))->toBeTrue();
+    expect($month1->isSameMonth($month3))->toBeFalse();
+});
+
+// isSameQuarter のテスト
+it('checks if date is same quarter correctly', function () {
+    $q1 = new Chronos('2023-01-15');
+    $q1End = new Chronos('2023-03-31');
+    $q2 = new Chronos('2023-04-01');
+    $q4 = new Chronos('2023-10-15');
+    $nextYearQ1 = new Chronos('2024-01-15');
+
+    expect($q1->isSameQuarter($q1End))->toBeTrue();
+    expect($q1->isSameQuarter($q2))->toBeFalse();
+    expect($q1->isSameQuarter($nextYearQ1))->toBeFalse();
+    expect($q2->isSameQuarter($q4))->toBeFalse();
+});
+
+// isSameYear のテスト
+it('checks if date is same year correctly', function () {
+    $year1 = new Chronos('2023-01-01');
+    $year2 = new Chronos('2023-12-31');
+    $year3 = new Chronos('2024-01-01');
+
+    expect($year1->isSameYear($year2))->toBeTrue();
+    expect($year1->isSameYear($year3))->toBeFalse();
+});
+
+// isSameWeek のテスト
+it('checks if date is same week correctly', function () {
+    $week1Start = new Chronos('2023-05-01'); // 月曜日
+    $week1End = new Chronos('2023-05-07');   // 日曜日
+    $week2Start = new Chronos('2023-05-08'); // 次の週の月曜日
+
+    expect($week1Start->isSameWeek($week1End))->toBeTrue();
+    expect($week1Start->isSameWeek($week2Start))->toBeFalse();
+});
+
+// isSameHour のテスト
+it('checks if date is same hour correctly', function () {
+    $hour1 = new Chronos('2023-05-01 10:15:00');
+    $hour2 = new Chronos('2023-05-01 10:45:00');
+    $hour3 = new Chronos('2023-05-01 11:15:00');
+
+    expect($hour1->isSameHour($hour2))->toBeTrue();
+    expect($hour1->isSameHour($hour3))->toBeFalse();
+});
+
+// isSameMinute のテスト
+it('checks if date is same minute correctly', function () {
+    $minute1 = new Chronos('2023-05-01 10:15:10');
+    $minute2 = new Chronos('2023-05-01 10:15:45');
+    $minute3 = new Chronos('2023-05-01 10:16:10');
+
+    expect($minute1->isSameMinute($minute2))->toBeTrue();
+    expect($minute1->isSameMinute($minute3))->toBeFalse();
+});
+
+// isSameSecond のテスト
+it('checks if date is same second correctly', function () {
+    $second1 = new Chronos('2023-05-01 10:15:10.123');
+    $second2 = new Chronos('2023-05-01 10:15:10.456');
+    $second3 = new Chronos('2023-05-01 10:15:11.123');
+
+    expect($second1->isSameSecond($second2))->toBeTrue();
+    expect($second1->isSameSecond($second3))->toBeFalse();
+});
+
+// 複数のタイムゾーンでの isSameDay テスト
+it('checks if date is same day across different timezones', function () {
+    $tokyo = new Chronos('2023-05-01 23:00:00', new DateTimeZone('Asia/Tokyo'));
+    $london = new Chronos('2023-05-01 15:00:00', new DateTimeZone('Europe/London'));
+    $newYork = new Chronos('2023-05-01 10:00:00', new DateTimeZone('America/New_York'));
+
+    // これらは同じ時点を異なるタイムゾーンで表しているため、同じ日になるはず
+    expect($tokyo->isSameDay($london))->toBeTrue();
+    expect($tokyo->isSameDay($newYork))->toBeTrue();
+});
+
+// 境界値でのテスト（月末など）
+it('handles edge cases for isSameMonth correctly', function () {
+    $janEnd = new Chronos('2023-01-31');
+    $febStart = new Chronos('2023-02-01');
+
+    expect($janEnd->isSameMonth($febStart))->toBeFalse();
+
+    // うるう年と非うるう年の2月の比較
+    $feb2023 = new Chronos('2023-02-28'); // 非うるう年
+    $feb2024 = new Chronos('2024-02-29'); // うるう年
+
+    expect($feb2023->isSameMonth($feb2024))->toBeFalse(); // 年が違うので false
+});
+
+// 四半期の境界でのテスト
+it('handles quarter boundaries correctly', function () {
+    $q1End = new Chronos('2023-03-31 23:59:59');
+    $q2Start = new Chronos('2023-04-01 00:00:00');
+
+    expect($q1End->isSameQuarter($q2Start))->toBeFalse();
 });
