@@ -1,53 +1,40 @@
 # Chronos
 
-Chronosは、PHPの拡張機能として提供されている日付/時刻ライブラリーです。Carbonの軽量版としてPHPの標準のDateTimeクラスと互換性があります。
+Chronos is a lightweight date/time extension for PHP 8+. It extends the native `DateTime` class and offers Carbon-like helpers implemented in Zephir.
 
-### Zephirとは
+## Building the Extension
 
-Zephir は、PHPの拡張機能を容易に作成し、維持するために設計されたオープンソースの高レベルなプログラミング言語です。
-
-https://docs.zephir-lang.com/0.12/en/welcome
-
-## インストール
-
-### コンパイルとインストール
-
-1. Zephir インストーラーを使用して、ソースコードから拡張をコンパイルします。
+1. Compile the source and install the module:
 
 ```bash
-zephir fullclean
-
-zephir build
+cd ext
+phpize
+./configure
+make
+sudo make install
 ```
 
-2. php.ini に以下の行を追加して、拡張機能を有効にします。
+2. Enable the extension by adding the following line to your `php.ini`:
 
 ```ini
 extension=chronos.so
 ```
 
-3. 使い方
-
-この拡張の基本的な使い方
+## Usage
 
 ```php
 <?php
-
 $chronos = \Chronos\Chronos::now();
 echo $chronos->format('Y-m-d H:i:s');
-
-// 2023-11-18 23:08:56
 ```
 
-4. テスト
+## Running Tests
+
+Install development dependencies and execute the test suite:
 
 ```bash
 composer install
-
-./vendor/bin/pest ide-stubs/tests
-
-   PASS  Idestubs\tests\ChronosTest
-
-  Tests:    64 passed (68 assertions)
-  Duration: 0.17s
+php vendor/bin/pest --configuration ide-stubs/phpunit.xml.dist
 ```
+
+All tests should pass without failures.
