@@ -1,0 +1,21 @@
+{
+    "name": "daaquan/chronos-ext",
+    "type": "library",
+    "description": "A PHP extension for the Chronos library",
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Chronos\\": "ide-stubs/src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8"
+    }
+}
