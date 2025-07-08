@@ -5,7 +5,7 @@ namespace Chronos\Chronos;
 use Chronos\Chronos;
 
 /**
- * Carbonクラスのような日付と時間の操作を行う
+ * Carbon-like date and time utilities
  */
 interface ChronosInterface
 {

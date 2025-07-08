@@ -75,7 +75,7 @@ class Chronos extends DateTime implements ChronosInterface
 
     public function locale(var locale)
     {
-        // "ja_JP.UTF-8"
+        // e.g., "ja_JP.UTF-8"
         setlocale(LC_TIME, locale);
         return this;
     }
@@ -921,7 +921,7 @@ class Chronos extends DateTime implements ChronosInterface
 
     public function isSameWeek(<\DateTimeInterface> targetObject) -> bool
     {
-        // ISO-8601 週番号を使用 (年-週番号)
+        // Use ISO-8601 week number (year-week)
         return this->format("o-W") === targetObject->format("o-W");
     }
 
