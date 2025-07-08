@@ -38,7 +38,7 @@ jobs:
         if: success()
         run: |
           composer install
-          php -d extension=chronos ./vendor/bin/pest ide-stubs/tests
+          php -d extension=chronos ./vendor/bin/pest --configuration ide-stubs/phpunit.xml.dist
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
