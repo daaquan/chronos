@@ -1,7 +1,7 @@
 namespace Chronos;
 
 /**
- * Carbonクラスのような日付と時間の操作を行う
+ * Interface describing the Chronos date and time operations.
  */
 interface ChronosInterface
 {

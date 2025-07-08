@@ -3168,109 +3168,117 @@ PHP_METHOD(Chronos_Chronos, diffInHours)
 
 PHP_METHOD(Chronos_Chronos, diffInMonths)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *other, other_sub, *abs = NULL, abs_sub, __$true, diffInMonths, timestamp2, timestamp1, _0, _1;
-	zval *this_ptr = getThis();
+        zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+        zend_long ZEPHIR_LAST_CALL_STATUS;
+        zval *other, other_sub, *abs = NULL, abs_sub, __$true, diff, months, _0, _1, _2, _3;
+        zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&other_sub);
-	ZVAL_UNDEF(&abs_sub);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_UNDEF(&diffInMonths);
-	ZVAL_UNDEF(&timestamp2);
-	ZVAL_UNDEF(&timestamp1);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&other_sub);
+        ZVAL_UNDEF(&abs_sub);
+        ZVAL_BOOL(&__$true, 1);
+        ZVAL_UNDEF(&diff);
+        ZVAL_UNDEF(&months);
+        ZVAL_UNDEF(&_0);
+        ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&_2);
+        ZVAL_UNDEF(&_3);
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(other)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(abs)
 	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 1, &other, &abs);
-	if (!abs) {
-		abs = &abs_sub;
-		abs = &__$true;
-	}
-	ZEPHIR_CALL_METHOD(&timestamp1, this_ptr, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&timestamp2, other, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_sub_function(&_0, &timestamp1, &timestamp2);
-	ZEPHIR_INIT_VAR(&diffInMonths);
-	ZVAL_DOUBLE(&diffInMonths, zephir_safe_div_zval_long(&_0, 2678400));
-	ZEPHIR_INIT_VAR(&_1);
-	if (zephir_is_true(abs)) {
-		ZEPHIR_CALL_FUNCTION(&_1, "abs", NULL, 4, &diffInMonths);
-		zephir_check_call_status();
-	} else {
-		ZEPHIR_CPY_WRT(&_1, &diffInMonths);
-	}
-	RETURN_MM_LONG(zephir_get_intval(&_1));
+       ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+       zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
+       zephir_fetch_params(1, 1, 1, &other, &abs);
+       if (!abs) {
+               abs = &abs_sub;
+               abs = &__$true;
+       }
+
+       ZVAL_FALSE(&_0);
+       ZEPHIR_CALL_METHOD(&diff, this_ptr, "diff", NULL, 0, other, &_0);
+       zephir_check_call_status();
+       zephir_read_property(&_1, &diff, ZEND_STRL("y"), PH_NOISY_CC);
+       zephir_read_property(&_2, &diff, ZEND_STRL("m"), PH_NOISY_CC);
+       ZEPHIR_INIT_VAR(&months);
+       ZVAL_LONG(&months, (zephir_get_intval(&_1) * 12) + zephir_get_intval(&_2));
+       zephir_read_property(&_3, &diff, ZEND_STRL("invert"), PH_NOISY_CC);
+       if (zephir_is_true(&_3)) {
+               ZVAL_LONG(&months, -zephir_get_intval(&months));
+       }
+
+       if (zephir_is_true(abs)) {
+               ZEPHIR_RETURN_CALL_FUNCTION("abs", NULL, 4, &months);
+               zephir_check_call_status();
+               RETURN_MM_LONG(zval_get_long(return_value));
+       } else {
+               RETURN_MM_LONG(zephir_get_intval(&months));
+       }
 }
 
 PHP_METHOD(Chronos_Chronos, diffInYears)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *other, other_sub, *abs = NULL, abs_sub, __$true, diffInYears, timestamp2, timestamp1, _0, _1;
-	zval *this_ptr = getThis();
+        zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+        zend_long ZEPHIR_LAST_CALL_STATUS;
+        zval *other, other_sub, *abs = NULL, abs_sub, __$true, diff, years, _0, _1, _2;
+        zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&other_sub);
 	ZVAL_UNDEF(&abs_sub);
 	ZVAL_BOOL(&__$true, 1);
-	ZVAL_UNDEF(&diffInYears);
-	ZVAL_UNDEF(&timestamp2);
-	ZVAL_UNDEF(&timestamp1);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&diff);
+        ZVAL_UNDEF(&years);
+        ZVAL_UNDEF(&_0);
+        ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&_2);
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(other)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(abs)
 	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 1, &other, &abs);
-	if (!abs) {
-		abs = &abs_sub;
-		abs = &__$true;
-	}
-	ZEPHIR_CALL_METHOD(&timestamp1, this_ptr, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&timestamp2, other, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_sub_function(&_0, &timestamp1, &timestamp2);
-	ZEPHIR_INIT_VAR(&diffInYears);
-	ZVAL_DOUBLE(&diffInYears, zephir_safe_div_zval_long(&_0, 31536000));
-	ZEPHIR_INIT_VAR(&_1);
-	if (zephir_is_true(abs)) {
-		ZEPHIR_CALL_FUNCTION(&_1, "abs", NULL, 4, &diffInYears);
-		zephir_check_call_status();
-	} else {
-		ZEPHIR_CPY_WRT(&_1, &diffInYears);
-	}
-	RETURN_MM_LONG(zephir_get_intval(&_1));
+       ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+       zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
+       zephir_fetch_params(1, 1, 1, &other, &abs);
+       if (!abs) {
+               abs = &abs_sub;
+               abs = &__$true;
+       }
+
+       ZVAL_FALSE(&_0);
+       ZEPHIR_CALL_METHOD(&diff, this_ptr, "diff", NULL, 0, other, &_0);
+       zephir_check_call_status();
+       zephir_read_property(&_1, &diff, ZEND_STRL("y"), PH_NOISY_CC);
+       ZEPHIR_INIT_VAR(&years);
+       ZVAL_LONG(&years, zephir_get_intval(&_1));
+       zephir_read_property(&_2, &diff, ZEND_STRL("invert"), PH_NOISY_CC);
+       if (zephir_is_true(&_2)) {
+               ZVAL_LONG(&years, -zephir_get_intval(&years));
+       }
+
+       if (zephir_is_true(abs)) {
+               ZEPHIR_RETURN_CALL_FUNCTION("abs", NULL, 4, &years);
+               zephir_check_call_status();
+               RETURN_MM_LONG(zval_get_long(return_value));
+       } else {
+               RETURN_MM_LONG(zephir_get_intval(&years));
+       }
 }
 
 PHP_METHOD(Chronos_Chronos, diffInWeeks)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *other, other_sub, *abs = NULL, abs_sub, __$true, diffInWeeks, timestamp2, timestamp1, _0, _1;
-	zval *this_ptr = getThis();
+        zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+        zend_long ZEPHIR_LAST_CALL_STATUS;
+        zval *other, other_sub, *abs = NULL, abs_sub, __$true, diff, weeks, _0, _1, _2;
+        zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&other_sub);
 	ZVAL_UNDEF(&abs_sub);
 	ZVAL_BOOL(&__$true, 1);
-	ZVAL_UNDEF(&diffInWeeks);
-	ZVAL_UNDEF(&timestamp2);
-	ZVAL_UNDEF(&timestamp1);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&diff);
+        ZVAL_UNDEF(&weeks);
+        ZVAL_UNDEF(&_0);
+        ZVAL_UNDEF(&_1);
+        ZVAL_UNDEF(&_2);
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(other)
 		Z_PARAM_OPTIONAL
@@ -3279,26 +3287,29 @@ PHP_METHOD(Chronos_Chronos, diffInWeeks)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 1, &other, &abs);
-	if (!abs) {
-		abs = &abs_sub;
-		abs = &__$true;
-	}
-	ZEPHIR_CALL_METHOD(&timestamp1, this_ptr, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&timestamp2, other, "gettimestamp", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_sub_function(&_0, &timestamp1, &timestamp2);
-	ZEPHIR_INIT_VAR(&diffInWeeks);
-	ZVAL_DOUBLE(&diffInWeeks, zephir_safe_div_zval_long(&_0, 604800));
-	ZEPHIR_INIT_VAR(&_1);
-	if (zephir_is_true(abs)) {
-		ZEPHIR_CALL_FUNCTION(&_1, "abs", NULL, 4, &diffInWeeks);
-		zephir_check_call_status();
-	} else {
-		ZEPHIR_CPY_WRT(&_1, &diffInWeeks);
-	}
-	RETURN_MM_LONG(zephir_get_intval(&_1));
+       if (!abs) {
+               abs = &abs_sub;
+               abs = &__$true;
+       }
+
+       ZVAL_FALSE(&_0);
+       ZEPHIR_CALL_METHOD(&diff, this_ptr, "diff", NULL, 0, other, &_0);
+       zephir_check_call_status();
+       zephir_read_property(&_1, &diff, ZEND_STRL("days"), PH_NOISY_CC);
+       ZEPHIR_INIT_VAR(&weeks);
+       ZVAL_LONG(&weeks, zephir_get_intval(&_1) / 7);
+       zephir_read_property(&_2, &diff, ZEND_STRL("invert"), PH_NOISY_CC);
+       if (zephir_is_true(&_2)) {
+               ZVAL_LONG(&weeks, -zephir_get_intval(&weeks));
+       }
+
+       if (zephir_is_true(abs)) {
+               ZEPHIR_RETURN_CALL_FUNCTION("abs", NULL, 4, &weeks);
+               zephir_check_call_status();
+               RETURN_MM_LONG(zval_get_long(return_value));
+       } else {
+               RETURN_MM_LONG(zephir_get_intval(&weeks));
+       }
 }
 
 PHP_METHOD(Chronos_Chronos, diffInDays)

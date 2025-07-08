@@ -1,5 +1,8 @@
 /**
- * Carbon like DateTime class for PHP 8.0+
+ * Carbon like DateTime class for PHP 8.0+.
+ *
+ * This class extends PHP's native DateTime and provides
+ * convenience helpers similar to the Carbon library.
  */
 
 namespace Chronos;
@@ -32,6 +35,12 @@ class Chronos extends DateTime implements ChronosInterface
         "~$~" : "s"
     ];
 
+    /**
+     * Create a new Chronos instance.
+     *
+     * @param string datetime  String acceptable by DateTime constructor.
+     * @param mixed  timezone  Timezone name or DateTimeZone instance.
+     */
     public function __construct(string datetime = "now", var timezone = null)
     {
         var tempTimezone;
@@ -41,6 +50,12 @@ class Chronos extends DateTime implements ChronosInterface
         parent::__construct(datetime, tempTimezone);
     }
 
+    /**
+     * Set the timezone for the instance.
+     *
+     * @param mixed timezone  Timezone name or DateTimeZone instance.
+     * @return DateTime       The current instance for chaining.
+     */
     public function setTimeZone(var timezone) -> <DateTime>
     {
         if (!(timezone instanceof DateTimeZone)) {
@@ -770,37 +785,55 @@ class Chronos extends DateTime implements ChronosInterface
         return (int) (abs ? abs(diffInHours) : diffInHours);
     }
 
+    /**
+     * Difference in whole months between this date and another.
+     *
+     * @param DateTime other
+     * @param bool abs  Return absolute difference when true.
+     */
     public function diffInMonths(var other, var abs = true)
     {
-        var diffInMonths;
-        var timestamp2;
-        var timestamp1;
-        let timestamp1 = this->getTimestamp();
-        let timestamp2 = other->getTimestamp();
-        let diffInMonths = (timestamp1 - timestamp2) / 2678400;
-        return (int) (abs ? abs(diffInMonths) : diffInMonths);
+        var diff, months;
+        let diff = this->diff(other, false);
+        let months = diff->y * 12 + diff->m;
+        if diff->invert {
+            let months = -months;
+        }
+        return (int) (abs ? abs(months) : months);
     }
 
+    /**
+     * Difference in whole years between this date and another.
+     *
+     * @param DateTime other
+     * @param bool abs  Return absolute difference when true.
+     */
     public function diffInYears(var other, var abs = true)
     {
-        var diffInYears;
-        var timestamp2;
-        var timestamp1;
-        let timestamp1 = this->getTimestamp();
-        let timestamp2 = other->getTimestamp();
-        let diffInYears = (timestamp1 - timestamp2) / 31536000;
-        return (int) (abs ? abs(diffInYears) : diffInYears);
+        var diff, years;
+        let diff = this->diff(other, false);
+        let years = diff->y;
+        if diff->invert {
+            let years = -years;
+        }
+        return (int) (abs ? abs(years) : years);
     }
 
+    /**
+     * Difference in whole weeks between this date and another.
+     *
+     * @param DateTime other
+     * @param bool abs  Return absolute difference when true.
+     */
     public function diffInWeeks(var other, var abs = true)
     {
-        var diffInWeeks;
-        var timestamp2;
-        var timestamp1;
-        let timestamp1 = this->getTimestamp();
-        let timestamp2 = other->getTimestamp();
-        let diffInWeeks = (timestamp1 - timestamp2) / 604800;
-        return (int) (abs ? abs(diffInWeeks) : diffInWeeks);
+        var diff, weeks;
+        let diff = this->diff(other, false);
+        let weeks = diff->days / 7;
+        if diff->invert {
+            let weeks = -weeks;
+        }
+        return (int) (abs ? abs(weeks) : weeks);
     }
 
     public function diffInDays(var other, var abs = true)
