@@ -38,3 +38,14 @@ php vendor/bin/pest --configuration ide-stubs/phpunit.xml.dist
 ```
 
 All tests should pass without failures.
+
+## Packaging for PECL
+
+Create the `package.xml` file describing the extension and run the `pecl package` command from the repository root:
+
+```bash
+pecl package
+```
+
+This will generate a distributable `chronos-0.0.1.tgz` archive that can be uploaded to PECL.
+
