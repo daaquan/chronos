@@ -5,11 +5,12 @@ namespace Chronos;
 use Chronos\Chronos\ChronosInterface;
 
 /**
- * Carbonクラスのような日付と時間の操作を行う
+ * Provides Carbon-like date and time utilities.
  */
 class Chronos extends \DateTime implements ChronosInterface
 {
     /**
+     * __construct
      * @param \DateTimeZone|string|null $timezone
      */
     public function __construct(string $datetime = 'now', $timezone = null)
@@ -17,34 +18,25 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * タイムゾーンを設定する
-     *
-     * @param mixed $timezone 新しいタイムゾーン
+     * Set time zone
+     * @param mixed $timezone
      */
     public function setTimeZone($timezone): static
     {
     }
 
     /**
-     * 文字列をChronosインスタンスに解析する
-     *
-     * `parse`メソッドは与えられた文字列をChronosインスタンスに解析しようと試みます
-     * さまざまな日付や時間のフォーマットを扱うことができますタイムゾーンが指定されていない場合は、
-     * デフォルトのタイムゾーンが使用されます`$time`パラメータが提供されていない場合は、
-     * 'now'がデフォルト値となり、現在の日付と時間のインスタンスが生成されます
-     *
-     * @param string|null $time 日付と時間を表す文字列
-     * @param \DateTimeZone|string|null $timezone 時間文字列のタイムゾーン
-     * nullの場合は、デフォルトのタイムゾーンが使用されます
-     * @return static 新しいChronosインスタンスを返します
+     * parse
+     * @param string|null $time
+     * @param \DateTimeZone|string|null $timezone
+     * @return static
      */
     public static function parse($time = 'now', $timezone = null): static
     {
     }
 
     /**
-     * 現在の日付と時間を表すChronosインスタンスを返す
-     *
+     * now
      * @param \DateTimeZone|string $timezone
      */
     public static function now($timezone = null): static
@@ -52,22 +44,21 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在のインスタンスのクローンを返す
+     * copy
      */
     public function copy(): static
     {
     }
 
     /**
-     * 指定されたフォーマットで日付と時間を返す
+     * format
      */
     public function format(string $format, string $locale = null): string
     {
     }
 
     /**
-     * ロケールを設定する
-     *
+     * locale
      * @param mixed $locale
      */
     public function locale($locale)
@@ -75,130 +66,105 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在のインスタンスをDateTimeで返却する
+     * Return date time
      */
     public function toDateTime(): \DateTime
     {
     }
 
     /**
-     * 現在のインスタンスをDateTimeImmutableで返却する
+     * Return date time immutable
      */
     public function toDateTimeImmutable(): \DateTimeImmutable
     {
     }
 
     /**
-     * 日時を文字列で返却する
-     *
-     * @example '2018-07-25 12:34:56'
+     * Return date time string
      */
     public function toDateTimeString()
     {
     }
 
     /**
-     * 日付を文字列で返却する
-     *
-     * @example '2018-07-25'
+     * Return date string
      */
     public function toDateString()
     {
     }
 
     /**
-     * 週付けの日付を文字列で返却する
-     *
-     * @example '2018-07-25(Wed)'
+     * Return date week string
      */
     public function toDateWeekString()
     {
     }
 
     /**
-     * 時間を文字列で返却する
-     *
-     * @example '12:34:56'
+     * Return time string
      */
     public function toTimeString()
     {
     }
 
     /**
-     * 曜日を文字列で返却する
-     *
-     * @example 'Wednesday'
+     * Return day of week string
      */
     public function toDayOfWeekString()
     {
     }
 
     /**
-     * 曜日を短縮形式の文字列で返却する
-     *
-     * @example 'Wed'
+     * Return day of week short string
      */
     public function toDayOfWeekShortString()
     {
     }
 
     /**
-     * 年内の日数を文字列で返却する
-     *
-     * @example '206'
+     * Return day of year string
      */
     public function toDayOfYearString()
     {
     }
 
     /**
-     * 年内の週数を文字列で返却する
-     *
-     * @example '30'
+     * Return week of year string
      */
     public function toWeekOfYearString()
     {
     }
 
     /**
-     * 月を文字列で返却する
-     *
-     * @example 'July'
+     * Return month string
      */
     public function toMonthString()
     {
     }
 
     /**
-     * 月を短縮形式の文字列で返却する
-     *
-     * @example 'Jul'
+     * Return month short string
      */
     public function toMonthShortString()
     {
     }
 
     /**
-     * 年を文字列で返却する
-     *
-     * @example '2018'
+     * Return year string
      */
     public function toYearString()
     {
     }
 
     /**
-     * ISO8601形式の文字列で返却する
-     *
-     * @example '2018-07-25T12:34:56+09:00'
+     * Return iso8601 string
      */
     public function toIso8601String()
     {
     }
 
     /**
-     * 現在の日付を表すインスタンスを返す
-     *
+     * Return day
      * @return static
      */
     public function today()
@@ -206,8 +172,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 明日の日付を表すインスタンスを返す
-     *
+     * Return morrow
      * @return static
      */
     public function tomorrow()
@@ -215,8 +180,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 昨日の日付を表すインスタンスを返す
-     *
+     * Return an instance for yesterday
      * @return static
      */
     public function yesterday()
@@ -224,8 +188,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の週を表すインスタンスを返す
-     *
+     * Return an instance for this week
      * @return static
      */
     public function thisWeek()
@@ -233,8 +196,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 次の週を表すインスタンスを返す
-     *
+     * Return an instance for next week
      * @return static
      */
     public function nextWeek()
@@ -242,8 +204,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 前の週を表すインスタンスを返す
-     *
+     * Return an instance for last week
      * @return static
      */
     public function lastWeek()
@@ -251,8 +212,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の月を表すインスタンスを返す
-     *
+     * Return an instance for this month
      * @return static
      */
     public function thisMonth()
@@ -260,8 +220,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 次の月を表すインスタンスを返す
-     *
+     * Return an instance for next month
      * @return static
      */
     public function nextMonth()
@@ -269,8 +228,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 前の月を表すインスタンスを返す
-     *
+     * Return an instance for last month
      * @return static
      */
     public function lastMonth()
@@ -278,8 +236,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の年を表すインスタンスを返す
-     *
+     * Return an instance for this year
      * @return static
      */
     public function thisYear()
@@ -287,8 +244,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 次の年を表すインスタンスを返す
-     *
+     * Return an instance for next year
      * @return static
      */
     public function nextYear()
@@ -296,8 +252,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 前の年を表すインスタンスを返す
-     *
+     * Return an instance for last year
      * @return static
      */
     public function lastYear()
@@ -305,8 +260,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の日の開始を表すインスタンスを返す
-     *
+     * Return an instance for start of day
      * @return static
      */
     public function startOfDay()
@@ -314,8 +268,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の週の開始を表すインスタンスを返す
-     *
+     * Return an instance for start of week
      * @return static
      */
     public function startOfWeek()
@@ -323,8 +276,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の月の開始を表すインスタンスを返す
-     *
+     * Return an instance for start of month
      * @return static
      */
     public function startOfMonth()
@@ -332,8 +284,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の年の開始を表すインスタンスを返す
-     *
+     * Return an instance for start of year
      * @return static
      */
     public function startOfYear()
@@ -341,8 +292,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の日の終了を表すインスタンスを返す
-     *
+     * Return an instance for end of day
      * @return static
      */
     public function endOfDay()
@@ -350,8 +300,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の週の終了を表すインスタンスを返す
-     *
+     * Return an instance for end of week
      * @return static
      */
     public function endOfWeek()
@@ -359,8 +308,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の月の終了を表すインスタンスを返す
-     *
+     * Return an instance for end of month
      * @return static
      */
     public function endOfMonth()
@@ -368,8 +316,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 現在の年の終了を表すインスタンスを返す
-     *
+     * Return an instance for end of year
      * @return static
      */
     public function endOfYear()
@@ -377,6 +324,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
+     * modify
      * @return static
      */
     public function modify(string $modifier): \DateTime
@@ -384,496 +332,497 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 今日の日付のインスタンスかどうかを判定する
+     * Check if today
      */
     public function isToday(): bool
     {
     }
 
     /**
-     * 明日の日付のインスタンスかどうかを判定する
+     * Check if tomorrow
      */
     public function isTomorrow(): bool
     {
     }
 
     /**
-     * 昨日の日付のインスタンスかどうかを判定する
+     * Check if yesterday
      */
     public function isYesterday(): bool
     {
     }
 
     /**
-     * 現在の週のインスタンスかどうかを判定する
+     * Check if this week
      */
     public function isThisWeek(): bool
     {
     }
 
     /**
-     * 次の週のインスタンスかどうかを判定する
+     * Check if next week
      */
     public function isNextWeek(): bool
     {
     }
 
     /**
-     * 前の週のインスタンスかどうかを判定する
+     * Check if last week
      */
     public function isLastWeek(): bool
     {
     }
 
     /**
-     * 現在の月のインスタンスかどうかを判定する
+     * Check if this month
      */
     public function isThisMonth(): bool
     {
     }
 
     /**
-     * 次の月のインスタンスかどうかを判定する
+     * Check if next month
      */
     public function isNextMonth(): bool
     {
     }
 
     /**
-     * 前の月のインスタンスかどうかを判定する
+     * Check if last month
      */
     public function isLastMonth(): bool
     {
     }
 
     /**
-     * 現在の年のインスタンスかどうかを判定する
+     * Check if this year
      */
     public function isThisYear(): bool
     {
     }
 
     /**
-     * 次の年のインスタンスかどうかを判定する
+     * Check if next year
      */
     public function isNextYear(): bool
     {
     }
 
     /**
-     * 前の年のインスタンスかどうかを判定する
+     * Check if last year
      */
     public function isLastYear(): bool
     {
     }
 
     /**
-     * 未来の日付のインスタンスかどうかを判定する
+     * Check if future
      */
     public function isFuture(): bool
     {
     }
 
     /**
-     * 過去の日付のインスタンスかどうかを判定する
+     * Check if past
      */
     public function isPast(): bool
     {
     }
 
     /**
-     * 閏年のインスタンスかどうかを判定する
+     * Check if leap year
      */
     public function isLeapYear(): bool
     {
     }
 
     /**
-     * 平日のインスタンスかどうかを判定する
+     * Check if weekday
      */
     public function isWeekday(): bool
     {
     }
 
     /**
-     * 週末のインスタンスかどうかを判定する
+     * Check if weekend
      */
     public function isWeekend(): bool
     {
     }
 
     /**
-     * 月曜日のインスタンスかどうかを判定する
+     * Check if monday
      */
     public function isMonday(): bool
     {
     }
 
     /**
-     * 火曜日のインスタンスかどうかを判定する
+     * Check if tuesday
      */
     public function isTuesday(): bool
     {
     }
 
     /**
-     * 水曜日のインスタンスかどうかを判定する
+     * Check if wednesday
      */
     public function isWednesday(): bool
     {
     }
 
     /**
-     * 木曜日のインスタンスかどうかを判定する
+     * Check if thursday
      */
     public function isThursday(): bool
     {
     }
 
     /**
-     * 金曜日のインスタンスかどうかを判定する
+     * Check if friday
      */
     public function isFriday(): bool
     {
     }
 
     /**
-     * 土曜日のインスタンスかどうかを判定する
+     * Check if saturday
      */
     public function isSaturday(): bool
     {
     }
 
     /**
-     * 日曜日のインスタンスかどうかを判定する
+     * Check if sunday
      */
     public function isSunday(): bool
     {
     }
 
     /**
-     * 午前のインスタンスかどうかを判定する
+     * Check if morning
      */
     public function isMorning(): bool
     {
     }
 
     /**
-     * 午後のインスタンスかどうかを判定する
+     * Check if afternoon
      */
     public function isAfternoon(): bool
     {
     }
 
     /**
-     * 夕方のインスタンスかどうかを判定する
+     * Check if evening
      */
     public function isEvening(): bool
     {
     }
 
     /**
-     * 夜のインスタンスかどうかを判定する
+     * Check if night
      */
     public function isNight(): bool
     {
     }
 
     /**
-     * 真夜中のインスタンスかどうかを判定する
+     * Check if midnight
      */
     public function isMidnight(): bool
     {
     }
 
     /**
-     * 正午のインスタンスかどうかを判定する
+     * Check if noon
      */
     public function isNoon(): bool
     {
     }
 
     /**
-     * サマータイムのインスタンスかどうかを判定する
+     * Check if daylight saving time
      */
     public function isDaylightSavingTime(): bool
     {
     }
 
     /**
-     * 標準時のインスタンスかどうかを判定する
+     * Check if standard time
      */
     public function isStandardTime(): bool
     {
     }
 
     /**
-     * 現在の日付が月の最後の日かどうかを判定する
+     * Check if last day of month
      */
     public function isLastDayOfMonth(): bool
     {
     }
 
     /**
-     * 現在の日付が月の最後の週かどうかを判定する
+     * Check if last week of month
      */
     public function isLastWeekOfMonth(): bool
     {
     }
 
     /**
-     * 現在の日付が年の最後の週かどうかを判定する
+     * Check if last week of year
      */
     public function isLastWeekOfYear(): bool
     {
     }
 
     /**
-     * 年を返す
+     * Get year
      */
     public function getYear()
     {
     }
 
     /**
-     * 月を返す
+     * Get month
      */
     public function getMonth()
     {
     }
 
     /**
-     * 日を返す
+     * Get day
      */
     public function getDay()
     {
     }
 
     /**
-     * 時間を返す
+     * Get hour
      */
     public function getHour()
     {
     }
 
     /**
-     * 分を返す
+     * Get minute
      */
     public function getMinute()
     {
     }
 
     /**
-     * 秒を返す
+     * Get second
      */
     public function getSecond()
     {
     }
 
     /**
-     * マイクロ秒を返す
+     * Get microsecond
      */
     public function getMicrosecond()
     {
     }
 
     /**
-     * 曜日を返す
+     * Get day of week
      */
     public function getDayOfWeek()
     {
     }
 
     /**
-     * 年間の通算日を返す
+     * Get day of year
      */
     public function getDayOfYear()
     {
     }
 
     /**
-     * 年内の週番号を返す
+     * Get week of year
      */
     public function getWeekOfYear()
     {
     }
 
     /**
-     * 月を返す
+     * Get month of year
      */
     public function getMonthOfYear()
     {
     }
 
     /**
-     * 年齢を返す
+     * Get age
      */
     public function getAge(): int
     {
     }
 
     /**
-     * 月の日数を返す
+     * Get days in month
      */
     public function getDaysInMonth(): int
     {
     }
 
     /**
-     * 年の日数を返す
+     * Get days in year
      */
     public function getDaysInYear(): int
     {
     }
 
     /**
-     * 週の日数を返す
+     * Get days in week
      */
     public function getDaysInWeek(): int
     {
     }
 
     /**
-     * 年の月数を返す
+     * Get months in year
      */
     public function getMonthsInYear(): int
     {
     }
 
     /**
-     * 分の秒数を返す
+     * Get seconds in minute
      */
     public function getSecondsInMinute(): int
     {
     }
 
     /**
-     * 時間の分数を返す
+     * Get minutes in hour
      */
     public function getMinutesInHour(): int
     {
     }
 
     /**
-     * 日の時間を返す
+     * Get hours in day
      */
     public function getHoursInDay(): int
     {
     }
 
     /**
-     * 週の時間を返す
+     * Get hours in week
      */
     public function getHoursInWeek(): int
     {
     }
 
     /**
-     * 月の時間を返す
+     * Get hours in month
      */
     public function getHoursInMonth(): int
     {
     }
 
     /**
-     * 年の時間を返す
+     * Get hours in year
      */
     public function getHoursInYear(): int
     {
     }
 
     /**
-     * 週の分数を返す
+     * Get minutes in week
      */
     public function getMinutesInWeek(): int
     {
     }
 
     /**
-     * 月の分数を返す
+     * Get minutes in month
      */
     public function getMinutesInMonth(): int
     {
     }
 
     /**
-     * 年の分数を返す
+     * Get minutes in year
      */
     public function getMinutesInYear(): int
     {
     }
 
     /**
-     * 週の秒数を返す
+     * Get seconds in week
      */
     public function getSecondsInWeek(): int
     {
     }
 
     /**
-     * 月の秒数を返す
+     * Get seconds in month
      */
     public function getSecondsInMonth(): int
     {
     }
 
     /**
-     * 年の秒数を返す
+     * Get seconds in year
      */
     public function getSecondsInYear(): int
     {
     }
 
     /**
-     * 秒のマイクロ秒数を返す
+     * Get microseconds in second
      */
     public function getMicrosecondsInSecond(): int
     {
     }
 
     /**
-     * 分のマイクロ秒数を返す
+     * Get microseconds in minute
      */
     public function getMicrosecondsInMinute(): int
     {
     }
 
     /**
-     * 時間のマイクロ秒数を返す
+     * Get microseconds in hour
      */
     public function getMicrosecondsInHour(): int
     {
     }
 
     /**
-     * 日のマイクロ秒数を返す
+     * Get microseconds in day
      */
     public function getMicrosecondsInDay(): int
     {
     }
 
     /**
-     * 週のマイクロ秒数を返す
+     * Get microseconds in week
      */
     public function getMicrosecondsInWeek(): int
     {
     }
 
     /**
-     * 月のマイクロ秒数を返す
+     * Get microseconds in month
      */
     public function getMicrosecondsInMonth(): int
     {
     }
 
     /**
-     * 年のマイクロ秒数を返す
+     * Get microseconds in year
      */
     public function getMicrosecondsInYear(): int
     {
     }
 
     /**
+     * Set date time
      * @param \DateTimeZone|string|null $timezone
      */
     public function setDateTime(\DateTime $dateTime)
@@ -881,85 +830,84 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 年を設定する
+     * Set year
      */
     public function setYear(int $year)
     {
     }
 
     /**
-     * 月を設定する
+     * Set month
      */
     public function setMonth(int $month)
     {
     }
 
     /**
-     * 日を設定する
+     * Set day
      */
     public function setDay(int $day)
     {
     }
 
     /**
-     * 時間を設定する
+     * Set hour
      */
     public function setHour(int $hour)
     {
     }
 
     /**
-     * 分を設定する
+     * Set minute
      */
     public function setMinute(int $minute)
     {
     }
 
     /**
-     * 秒を設定する
+     * Set second
      */
     public function setSecond(int $second)
     {
     }
 
     /**
-     * 曜日を設定する
+     * Set day of week
      */
     public function setDayOfWeek(int $dayOfWeek)
     {
     }
 
     /**
-     * 年間の日を設定する
+     * Set day of year
      */
     public function setDayOfYear(int $dayOfYear)
     {
     }
 
     /**
-     * 年間の週番号を設定する
+     * Set week of year
      */
     public function setWeekOfYear(int $weekOfYear)
     {
     }
 
     /**
-     * 月間の週番号を設定する
+     * Set week of month
      */
     public function setWeekOfMonth(int $weekOfMonth)
     {
     }
 
     /**
-     * 年間の月を設定する
+     * Set month of year
      */
     public function setMonthOfYear(int $monthOfYear)
     {
     }
 
     /**
-     * 年を加算して返す
-     *
+     * Add years
      * @return static
      */
     public function addYears(int $years)
@@ -967,8 +915,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 月を加算して返す
-     *
+     * Add months
      * @return static
      */
     public function addMonths(int $months)
@@ -976,8 +923,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 日を加算して返す
-     *
+     * Add days
      * @return static
      */
     public function addDays(int $days)
@@ -985,8 +931,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 時間を加算して返す
-     *
+     * Add hours
      * @return static
      */
     public function addHours(int $hours)
@@ -994,8 +939,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 分を加算して返す
-     *
+     * Add minutes
      * @return static
      */
     public function addMinutes(int $minutes)
@@ -1003,8 +947,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 秒を加算して返す
-     *
+     * Add seconds
      * @return static
      */
     public function addSeconds(int $seconds)
@@ -1012,8 +955,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * マイクロ秒を加算して返す
-     *
+     * Add microseconds
      * @return static
      */
     public function addMicroseconds(int $microseconds)
@@ -1021,8 +963,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 週を加算して返す
-     *
+     * Add weeks
      * @return static
      */
     public function addWeeks(int $weeks)
@@ -1030,8 +971,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 年を減算して返す
-     *
+     * Subtract years
      * @return static
      */
     public function subYears(int $years)
@@ -1039,8 +979,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 月を減算して返す
-     *
+     * Subtract months
      * @return static
      */
     public function subMonths(int $months)
@@ -1048,8 +987,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 日を減算して返す
-     *
+     * Subtract days
      * @return static
      */
     public function subDays(int $days)
@@ -1057,8 +995,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 時間を減算して返す
-     *
+     * Subtract hours
      * @return static
      */
     public function subHours($hours)
@@ -1066,8 +1003,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 分を減算して返す
-     *
+     * Subtract minutes
      * @return static
      */
     public function subMinutes(int $minutes)
@@ -1075,8 +1011,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 秒を減算して返す
-     *
+     * Subtract seconds
      * @return static
      */
     public function subSeconds(int $seconds)
@@ -1084,8 +1019,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * マイクロ秒を減算して返す
-     *
+     * Subtract microseconds
      * @return static
      */
     public function subMicroseconds(int $microseconds)
@@ -1093,8 +1027,7 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 週を減算して返す
-     *
+     * Subtract weeks
      * @return static
      */
     public function subWeeks(int $weeks)
@@ -1102,251 +1035,178 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * 指定された日時との差を秒単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Seconds
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInSeconds($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を分単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Minutes
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInMinutes($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を時間単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Hours
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInHours($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を日単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Months
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInMonths($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を年単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Years
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInYears($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を週単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Weeks
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInWeeks($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差を日単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差の秒数
+     * diff In Days
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInDays($other, bool $abs = true)
     {
     }
 
     /**
-     * 指定された日時との差をマイクロ秒単位で返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other 比較対象の日時
-     * @param bool $abs 差の絶対値を取るかどうか（デフォルトではtrue）
-     * @return int 差のマイクロ秒数
+     * diff In Microseconds
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $other
+     * @param bool $abs
+     * @return int
      */
     public function diffInMicroseconds($other, bool $abs = true)
     {
     }
 
     /**
-     * インスタンスが他の2つの間にあるかどうかを判定します
-     *
-     * 3つ目の引数では、境界を含むかどうかを指定できます（デフォルトではtrue）
-     * ただし、境界を含む/含まないことがアプリケーションで異なる結果を生む可能性がある場合、
-     * 明示的なメソッド ->betweenIncluded() や ->betweenExcluded() の使用を推奨します
-     *
+     * between
      * @param \Chronos\Chronos|\DateTimeInterface|mixed $date1
      * @param \Chronos\Chronos|\DateTimeInterface|mixed $date2
-     * @param bool $equal Indicates if an equal to comparison should be done
-     *
-     * @example
-     * ```
-     * Chronos::parse('2018-07-25')->between('2018-07-14', '2018-08-01'); // true
-     * Chronos::parse('2018-07-25')->between('2018-08-01', '2018-08-20'); // false
-     * Chronos::parse('2018-07-25')->between('2018-07-25', '2018-08-01'); // true
-     * Chronos::parse('2018-07-25')->between('2018-07-25', '2018-08-01', false); // false
-     * ```
+     * @param bool $equal
      */
     public function between($start, $end, bool $equal = true): bool
     {
     }
 
     /**
-     * 現在の日時に対して比較演算子を適用し、真偽値を返す
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 比較結果等しい場合はtrue、そうでない場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $result = $date1->eq($date2); // false
-     *  ```
+     * eq
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function eq($dateTime): bool
     {
     }
 
     /**
-     * 現在の日時が引数の日時と異なるかどうかを判定する
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 等しくない場合はtrue、等しい場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $diffInSeconds = $date1->diffInSeconds($date2); // 31536000 (1年の秒数)
-     *  ```
+     * ne
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function ne($dateTime): bool
     {
     }
 
     /**
-     * 現在の日時が引数の日時よりも大きいかどうかを判定する
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 現在の日時が引数の日時よりも大きい場合はtrue、そうでない場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $result = $date1->gt($date2); // false
-     *  ```
+     * gt
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function gt($dateTime): bool
     {
     }
 
     /**
-     * 現在の日時が引数の日時よりも大きいかどうかを判定する
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 現在の日時が引数の日時よりも大きい場合はtrue、そうでない場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $result = $date1->gt($date2); // false
-     *  ```
+     * gte
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function gte($dateTime): bool
     {
     }
 
     /**
-     * 現在の日時が引数の日時よりも小さいかどうかを判定する
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 現在の日時が引数の日時よりも小さい場合はtrue、そうでない場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $result = $date1->lt($date2); // true
-     *  ```
+     * lt
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function lt($dateTime): bool
     {
     }
 
     /**
-     * 現在の日時が引数の日時よりも小さいかどうかを判定する
-     *
-     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime 比較する日時
-     * @return bool 現在の日時が引数の日時よりも小さい場合はtrue、そうでない場合はfalse
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2020-01-01');
-     *  $date2 = Chronos::parse('2021-01-01');
-     *  $result = $date1->lt($date2); // true
-     *  ```
+     * lte
+     * @param \Chronos\Chronos|\DateTimeInterface|mixed $dateTime
+     * @return bool
      */
     public function lte($dateTime): bool
     {
     }
 
     /**
-     * Checks if the given date is the same day as the current instance
-     *
-     * @param \DateTimeInterface $dateTime The date to compare
-     * @return bool True if the dates are on the same day, false otherwise
+     * Check if same day
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameDay(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Check if the given date is the same hour as the current instance
-     *
-     * @param \DateTimeInterface $dateTime The date to compare
-     * @return bool True if the dates are on the same hour, false otherwise
+     * Check if same hour
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameHour(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Check if the given date is the same minute as the current instance
-     *
-     * @param \DateTimeInterface $dateTime The date to compare
-     * @return bool True if the dates are on the same minute, false otherwise
+     * Check if same minute
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameMinute(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Check if two dates are in the same month.
-     *
+     * Check if same month
      * @param \DateTimeInterface $dateTime
      * @return bool
      */
@@ -1355,47 +1215,36 @@ class Chronos extends \DateTime implements ChronosInterface
     }
 
     /**
-     * Checks if the given date is in the same quarter as the current instance.
-     *
-     * @param \DateTimeInterface $dateTime The date to compare.
-     * @return bool True if the dates are in the same quarter, false otherwise.
+     * Check if same quarter
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameQuarter(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Checks if the given date is in the same second as the current instance.
-     *
-     * @param \DateTimeInterface $dateTime The date to compare.
-     * @return bool True if the dates are in the same second, false otherwise.
+     * Check if same second
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameSecond(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Checks if the given date is in the same week as the current instance.
-     *
-     * @param \DateTimeInterface $dateTime The date to compare.
-     * @return bool True if the dates are in the same week, false otherwise.
-     *
-     * @example
-     *  ```
-     *  $date1 = Chronos::parse('2023-05-01');
-     *  $date2 = Chronos::parse('2023-05-03');
-     *  $result = $date1->isSameWeek($date2); // true
-     *  ```
+     * Check if same week
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameWeek(\DateTimeInterface $dateTime): bool
     {
     }
 
     /**
-     * Checks if the current instance is in the same year as the given date.
-     *
-     * @param \DateTimeInterface $dateTime The date to compare
-     * @return bool True if the dates are in the same year, false otherwise
+     * Check if same year
+     * @param \DateTimeInterface $dateTime
+     * @return bool
      */
     public function isSameYear(\DateTimeInterface $dateTime): bool
     {

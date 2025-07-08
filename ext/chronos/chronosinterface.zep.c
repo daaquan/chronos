@@ -13,7 +13,7 @@
 
 
 /**
- * Carbonクラスのような日付と時間の操作を行う
+ * Carbon-like date and time utilities
  */
 ZEPHIR_INIT_CLASS(Chronos_ChronosInterface)
 {
