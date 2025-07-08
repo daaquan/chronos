@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.10.0" version="2.0"
+         xmlns="http://pear.php.net/dtd/package-2.0"
+         xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+                             http://pear.php.net/dtd/tasks-1.0.xsd
+                             http://pear.php.net/dtd/package-2.0
+                             http://pear.php.net/dtd/package-2.0.xsd">
+ <name>chronos</name>
+ <channel>pecl.php.net</channel>
+ <summary>Chronos PHP extension</summary>
+ <description>A lightweight date/time extension for PHP.</description>
+ <lead>
+  <name>Daaquan</name>
+  <user>daaquan</user>
+  <email>daaquan@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2025-07-08</date>
+ <time>08:24:24</time>
+ <version>
+  <release>0.0.1</release>
+  <api>0.0.1</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="https://opensource.org/licenses/MIT">MIT</license>
+ <notes>Initial PECL release.</notes>
+ <contents>
+  <dir name="/">
+   <file name="README.md" role="doc" />
+   <file name="LICENSE" role="doc" />
+   <dir name="ext" role="src">
+    <file name="clean" role="src" />
+    <file name="install" role="src" />
+    <file name="chronos.c" role="src" />
+    <file name="chronos.h" role="src" />
+    <file name="php_chronos.h" role="src" />
+    <file name="php_ext.h" role="src" />
+    <file name="ext.h" role="src" />
+    <file name="ext_config.h" role="src" />
+    <file name="config.m4" role="src" />
+    <file name="config.w32" role="src" />
+    <dir name="chronos" role="src">
+     <file name="abstractchronos.zep.c" role="src" />
+     <file name="abstractchronos.zep.h" role="src" />
+     <file name="chronos.zep.c" role="src" />
+     <file name="chronos.zep.h" role="src" />
+     <file name="chronosinterface.zep.c" role="src" />
+     <file name="chronosinterface.zep.h" role="src" />
+     <dir name="exceptions" role="src">
+      <file name="invalidformatexception.zep.c" role="src" />
+      <file name="invalidformatexception.zep.h" role="src" />
+     </dir>
+    </dir>
+    <dir name="kernel" role="src">
+     <file name="README.md" role="src" />
+     <file name="array.c" role="src" />
+     <file name="array.h" role="src" />
+     <file name="backtrace.c" role="src" />
+     <file name="backtrace.h" role="src" />
+     <file name="concat.c" role="src" />
+     <file name="concat.h" role="src" />
+     <file name="debug.c" role="src" />
+     <file name="debug.h" role="src" />
+     <file name="exception.c" role="src" />
+     <file name="exception.h" role="src" />
+     <file name="exit.c" role="src" />
+     <file name="exit.h" role="src" />
+     <file name="fcall.c" role="src" />
+     <file name="fcall.h" role="src" />
+     <file name="fcall_internal.h" role="src" />
+     <file name="file.c" role="src" />
+     <file name="file.h" role="src" />
+     <file name="filter.c" role="src" />
+     <file name="filter.h" role="src" />
+     <file name="globals.h" role="src" />
+     <file name="iterator.c" role="src" />
+     <file name="iterator.h" role="src" />
+     <file name="main.c" role="src" />
+     <file name="main.h" role="src" />
+     <file name="math.c" role="src" />
+     <file name="math.h" role="src" />
+     <file name="memory.c" role="src" />
+     <file name="memory.h" role="src" />
+     <file name="object.c" role="src" />
+     <file name="object.h" role="src" />
+     <file name="operators.c" role="src" />
+     <file name="operators.h" role="src" />
+     <file name="require.c" role="src" />
+     <file name="require.h" role="src" />
+     <file name="string.c" role="src" />
+     <file name="string.h" role="src" />
+     <file name="time.c" role="src" />
+     <file name="time.h" role="src" />
+     <file name="variables.c" role="src" />
+     <file name="variables.h" role="src" />
+    </dir>
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>8.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>chronos</providesextension>
+ <extsrcrelease />
+</package>
