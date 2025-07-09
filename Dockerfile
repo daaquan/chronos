@@ -1,20 +1,30 @@
-FROM php:8.3-cli-alpine
+FROM php:8.4-cli
 
-RUN apk add --no-cache --virtual .build-deps \
-        autoconf gcc g++ make \
-        php8-dev linux-headers \
+# Install build dependencies and prepare the source
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    autoconf \
+    libgmp-dev \
     && docker-php-source extract
 
+# Copy extension sources
 COPY ./ext /usr/src/php/ext/chronos
 
+# Build and install the extension
 RUN cd /usr/src/php/ext/chronos \
     && phpize \
-    && ./configure \
+    && ./configure --enable-chronos \
     && make -j$(nproc) \
     && make install
 
+# Enable the extension
 COPY ./php.ini /usr/local/etc/php/conf.d/chronos.ini
 
-RUN docker-php-source delete && apk del .build-deps
+# Cleanup build dependencies
+RUN docker-php-source delete \
+    && apt-get remove --purge -y autoconf gcc g++ make php-dev linux-headers \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 CMD ["php", "-a"]
