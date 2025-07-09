@@ -20,6 +20,19 @@ sudo make install
 extension=chronos.so
 ```
 
+## Building with Docker
+
+```bash
+docker build -t chronos-ext .
+# Build using the provided Dockerfile and php.ini
+```
+
+You can then run:
+
+```bash
+docker run --rm chronos-ext php -m | grep chronos
+```
+
 ## Usage
 
 ```php
@@ -48,4 +61,5 @@ pecl package
 ```
 
 This will generate a distributable `chronos-0.0.1.tgz` archive that can be uploaded to PECL.
+
 
